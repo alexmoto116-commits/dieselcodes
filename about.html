@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About DieselCodes: truck fault code reference</title>
+<meta name="description" content="What DieselCodes is, who it is for and where the data comes from: J1939 SPN/FMI, J1587, factory codes and heater codes, with a can-I-keep-driving verdict.">
+<link rel="canonical" href="https://dieselcodes.com/about.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/about.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="About DieselCodes: truck fault code reference">
+<meta property="og:description" content="What DieselCodes is, who it is for and where the data comes from: J1939 SPN/FMI, J1587, factory codes and heater codes, with a can-I-keep-driving verdict.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "headline": "About DieselCodes", "name": "About DieselCodes", "description": "What DieselCodes is, who it is for and where the data comes from: J1939 SPN/FMI, J1587, factory codes and heater codes, with a can-I-keep-driving verdict.", "url": "https://dieselcodes.com/about.html", "inLanguage": "en", "about": {"@type": "Organization", "name": "DieselCodes", "url": "https://dieselcodes.com/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "About", "item": "https://dieselcodes.com/about.html"}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+/* Раньше это были плашки в строку - хорошо, пока подпись короткая.
+   Теперь в ссылке полное название узла, и на телефоне плашки рвались:
+   «SPN» и номер вставали друг под другом, ширина скакала. Строка во всю
+   ширину с колонкой номера читается сверху вниз и не зависит от длины. */
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+/* Ответ на главный вопрос - сразу под заголовком. Подробный блок риска
+   ниже объясняет, а эта строка отвечает: человек на обочине не должен
+   пролистывать десять заводских таблиц, чтобы узнать, ехать ему или нет. */
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+/* Марка - то, что ищут глазами. Раньше она была набрана как шапка
+   таблицы, мелким серым капсом, и терялась среди служебных подписей. */
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.art p,.art li{color:#CBD7E3;font-size:15.5px;line-height:1.65}.art ul,.art ol{margin:0 0 14px;padding-left:22px}.art p{margin:0 0 12px;max-width:68ch}.art td,.art th{overflow-wrap:anywhere}.art td:first-child{font-weight:600;color:#EAF0F7}.art .short{border:1px solid rgba(111,227,211,.3);border-radius:12px;background:rgba(111,227,211,.05);padding:12px 16px;margin:0 0 26px}.art .short p{margin:0}.art h2{margin-top:30px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><span>About</span></div>
+<h1>About DieselCodes</h1><p class="upd">Updated: 2026-11-14</p>
+<div class="art">
+<div class="short"><p><b>In short.</b> DieselCodes is a free reference for truck fault codes. It explains what a code means and answers the question a driver has when a warning lamp comes on: can I keep driving?</p></div>
+<section><h2>What this site is</h2>
+<p>DieselCodes is a lookup and reference for the fault codes that trucks and their heaters report. It covers:</p>
+<ul>
+<li>J1939 codes: the SPN and FMI pair that most scanners show, with the standard meaning of each number;</li>
+<li>J1587-style codes, which are written as a control module (MID) plus a parameter (PID or SID) plus an FMI, used by some engines and other units;</li>
+<li>factory codes of individual makes, shown the way the make words them;</li>
+<li>fault codes of fuel-fired heaters, such as Webasto, Eberspächer and Planar.</li>
+</ul>
+<p>Every code page ends with a verdict, <i>Safe to drive</i> or <i>Do not drive</i>, and says how much time you have and what happens if you keep going. The search on the home page also takes a whole fault list pasted from a scanner and shows which code is the likely root cause and which ones only followed it. How the verdict is reached is explained on <a href="/how-we-rate.html">How we decide whether you can keep driving</a>.</p></section>
+<section><h2>Who it is for</h2>
+<ul>
+<li>Drivers and owner-operators who see a lamp or a code on the roadside and need to decide what to do next.</li>
+<li>Fleet mechanics and dispatchers who want a quick, plain-language reading of a code before the truck reaches the yard.</li>
+<li>Anyone with a scanner reading who wants to know what the numbers mean.</li>
+</ul>
+<p>It is a reference, not a workshop manual and not a diagnosis. The final call always belongs to a person who has the equipment to examine the truck.</p></section>
+<section><h2>Where the data comes from</h2>
+<ul>
+<li><b>The standard.</b> The meaning of SPN and FMI numbers follows the SAE J1939 standard. Code pages mark which reading comes from the J1939 standard and which from a make's own table.</li>
+<li><b>Factory tables.</b> Make pages and code pages show how individual makes word their codes, taken from the factory tables of those makes. Where a make uses a number differently from the standard, both readings are shown.</li>
+<li><b>Manufacturer manuals.</b> Heater pages are checked against manufacturer manuals and tables. The pages that give thresholds or procedures say that they follow the factory manual.</li>
+<li><b>Checking steps.</b> The &ldquo;what to check&rdquo; steps are general guidance. They do not replace the workshop manual of your make, which the pages point you to.</li>
+</ul>
+<p>Some fault names in the lookup tool come from factory tables that were compiled in another language and are translated, so a wording can look unusual. If it conflicts with the document of your manufacturer, the manufacturer's document is right. Not every code has its own page yet: the site grows page by page, and the date under each title shows when that page was last updated.</p></section>
+<section><h2>Who writes it</h2>
+<p>Pages are prepared and maintained by the DieselCodes editorial team. We do not publish individual author names, and no page claims the authority of a named person or a licence we do not hold.</p></section>
+<section id="corrections"><h2>Corrections</h2>
+<p>If you find a mistake, such as a wrong meaning of a code, a verdict that looks too relaxed or too strict, or a heater code that does not match your manual, please report it. Reports are checked against the manufacturer's documentation before a page is changed. A useful report names the page, the make and model, and the document that shows the correct value.</p>
+</section>
+</div>
+<p class="cta">Have a code from your scanner? <a href="/">Look it up</a> — or paste the whole list and we will show which fault is the root cause.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

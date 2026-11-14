@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planar code 13 and PU-5 blinks - correspondence table</title>
+<meta name="description" content="Planar has two code systems: the number on the controller display and the PU-5 blinks. A correspondence table, a look at 13, 29, 78, 04 and 06, and what to check yourself.">
+<link rel="canonical" href="https://dieselcodes.com/razbory/planar-kod-13-i-miganiya-pu5.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/razbory/planar-kod-13-i-miganiya-pu5.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Planar: why code 13 and 13 blinks are different faults">
+<meta property="og:description" content="Planar has two code systems: the number on the controller display and the PU-5 blinks. A correspondence table, a look at 13, 29, 78, 04 and 06, and what to check yourself.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Planar: why code 13 and 13 blinks are different faults", "description": "Planar has two code systems: the number on the controller display and the PU-5 blinks. A correspondence table, a look at 13, 29, 78, 04 and 06, and what to check yourself.", "inLanguage": "en", "datePublished": "2026-11-09", "dateModified": "2026-11-10", "mainEntityOfPage": "https://dieselcodes.com/razbory/planar-kod-13-i-miganiya-pu5.html", "author": {"@type": "Organization", "name": "DieselCodes editorial team", "url": "https://dieselcodes.com/about.html"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}, "image": "https://dieselcodes.com/assets/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are two blinks on the PU-5 code 02?", "acceptedAnswer": {"@type": "Answer", "text": "No. Two blinks correspond to repair code 13 (failed to start after two attempts). Code 02 on the PU-5 is twelve blinks."}}, {"@type": "Question", "name": "What do three blinks on the PU-5 mean?", "acceptedAnswer": {"@type": "Answer", "text": "Flame-out during operation: in the repair table that is codes 29 and 08 (and 78 with air in the fuel system). There is no code 03 in the repair table."}}, {"@type": "Question", "name": "Can the temperature sensor be replaced separately for code 04 or 06?", "acceptedAnswer": {"@type": "Answer", "text": "No, it is built into the control unit. The whole unit is replaced, and that is service work."}}, {"@type": "Question", "name": "Where do 13 blinks come from?", "acceptedAnswer": {"@type": "Answer", "text": "That is code 35, flame-out due to a voltage dip, and only on the Planar 8DM. It has nothing to do with code 13."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "Breakdowns", "item": "https://dieselcodes.com/razbory/"}, {"@type": "ListItem", "position": 3, "name": "Planar: why code 13 and 13 blinks are different faults", "item": "https://dieselcodes.com/razbory/planar-kod-13-i-miganiya-pu5.html"}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.na{color:#8B9AAC}.near .na{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;font-size:14.5px;line-height:1.45}.near .na .mono{color:#6FE3D3;flex:none;min-width:5.4em}.near .na .nm{flex:1}.jump .na{margin-right:12px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><a href="/razbory/">Breakdowns</a><span class="sep">&rsaquo;</span><span>Planar: why code 13 and 13 blinks are different faults</span></div>
+<style>.art p,.art li{color:#CBD7E3;font-size:15.5px;line-height:1.65}.art ul,.art ol{margin:0 0 14px;padding-left:22px}.art p{margin:0 0 12px;max-width:68ch}.art table{margin:0 0 18px}.art td,.art th{overflow-wrap:anywhere}.art td:first-child{font-weight:600;color:#EAF0F7}.art h3.faq-q{font-size:1em;font-weight:700;margin:14px 0 4px}.art .short{border:1px solid rgba(111,227,211,.3);border-radius:12px;background:rgba(111,227,211,.05);padding:12px 16px;margin:0 0 26px}.art .short p{margin:0}.art .gt{margin:26px 0 10px;font-size:17px}.razb ul{margin:0}</style><div class="art"><h1>Planar: why code 13 and 13 blinks are different faults</h1><p class="upd">Updated: 2026-11-10</p><form class="sf" action="/" method="get" role="search"><input type="search" name="q" placeholder="Your code, e.g. 1078/3" aria-label="Fault code" autocomplete="off" inputmode="text"><button type="submit">Search</button></form><div class="short"><p><b>In short.</b> Code 13 on a display controller matches two blinks of the PU-5, while 13 blinks is code 35, found only on the Planar 8DM. The numbers in the two systems do not match, so first find out exactly what you are looking at.</p></div><section><h2>Two systems, one heater</h2><p><b>Repair code</b>: a number from the repair manual table, shown on a display controller such as the PU-22: 01, 02, 13, 29, 78 and so on.</p><p><b>PU-5 blinks</b>: this controller has no display; a red LED blinks the needed number of times and pauses. Any button resets the signal.</p><p>The same failure carries different numbers in the two systems. The correspondence is given in the Autoterm user manual.</p></section><section><h2>Table: repair code and PU-5 blinks</h2><table><tr><th>Repair code</th><th>PU-5 blinks</th><th>What happened</th></tr><tr><td>01</td><td>1</td><td>Heat exchanger overheated</td></tr><tr><td>02</td><td>12</td><td>Possible overheating near the control unit</td></tr><tr><td>13</td><td>2</td><td>Failed to start after two attempts</td></tr><tr><td>29 (and 08)</td><td>3</td><td>Flame-out during operation</td></tr><tr><td>78</td><td>3</td><td>Flame-out (air bubble, pump, flame indicator)</td></tr><tr><td>09</td><td>4</td><td>Glow plug</td></tr><tr><td>05</td><td>5</td><td>Flame indicator</td></tr><tr><td>04 / 06</td><td>6</td><td>Temperature sensor in the control unit</td></tr><tr><td>17</td><td>7</td><td>Fuel pump</td></tr><tr><td>20</td><td>8</td><td>No link between the controller and the unit</td></tr><tr><td>12 and 15</td><td>9</td><td>Voltage: high and low share one number</td></tr><tr><td>16</td><td>10</td><td>Ventilation time exceeded</td></tr><tr><td>10, 27, 28</td><td>11</td><td>Air blower</td></tr></table><p>Three traps follow from the table. Two blinks on the PU-5 are not code 02 but code 13. Four blinks are not 04 but the glow plug (09). And 13 blinks are not code 13 but code 35: flame-out caused by a voltage dip, present only on the Planar 8DM.</p></section><section><h2>The most common codes</h2><p><b>13: the heater did not start.</b> Two automatic start attempts failed. The manual says to check the fuel (is there any, and is it suitable for the temperature), the fuel line for leaks and blockage, the air intake and exhaust, the blower and whether the glow plug heats. Checking the plug and the voltage at the unit counts as repair work.</p><p><b>29 and 78: flame-out.</b> The flame went out during operation. Causes: too little fuel, a faulty pump or flame indicator; for 78 an air bubble in the fuel system is added. On the PU-5 both codes give three blinks.</p><p><b>04 and 06: temperature sensor in the unit.</b> It is built into the control unit and is not replaced separately; it has no wiring. The only cure is replacing the unit, which is service work.</p></section><section><h2>What to check yourself</h2><ul><li>fuel in the tank and whether it suits the season;</li><li>exhaust and air intake: the passage must be clear;</li><li>fuel line: leaks and tight clamps;</li><li>blower: no sticking and no foreign objects.</li></ul></section><section><h2>When to see a workshop</h2><ul><li>code 04 or 06: the control unit must be replaced;</li><li>13 or 29 repeat after the fuel, exhaust and fuel line were checked;</li><li>the plug, fuel pump or flame indicator needs testing;</li><li>you could not find the cause from the list above.</li></ul></section><section><h2>Questions and answers</h2><h3 class="faq-q">Are two blinks on the PU-5 code 02?</h3><p>No. Two blinks correspond to repair code 13 (failed to start after two attempts). Code 02 on the PU-5 is twelve blinks.</p><h3 class="faq-q">What do three blinks on the PU-5 mean?</h3><p>Flame-out during operation: in the repair table that is codes 29 and 08 (and 78 with air in the fuel system). There is no code 03 in the repair table.</p><h3 class="faq-q">Can the temperature sensor be replaced separately for code 04 or 06?</h3><p>No, it is built into the control unit. The whole unit is replaced, and that is service work.</p><h3 class="faq-q">Where do 13 blinks come from?</h3><p>That is code 35, flame-out due to a voltage dip, and only on the Planar 8DM. It has nothing to do with code 13.</p></section><section><h2>Code pages on the site</h2><ul class="lines"><li><span class="na">Code 13 - failed to start</span></li><li><span class="na">Code 29 - flame-out</span></li><li><span class="na">Code 78 - flame-out, air in the fuel</span></li><li><span class="na">Code 4 - temperature sensor in the unit</span></li><li><span class="na">Code 6 - temperature sensor in the unit</span></li><li><span class="na">Code 2 - possible overheating</span></li><li><span class="na">All Planar codes</span></li></ul></section><p class="sub">Checked against manufacturer manuals and tables; the same facts as in our videos and articles. The decision to drive remains with the driver.</p><p><a href="/razbory/">&larr; All breakdowns</a></p></div><p class="cta">Cannot find your code? <a href="/">Type it into the search</a> — or paste the whole list from the scanner and we will show which fault is the real one.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

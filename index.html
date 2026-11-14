@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en" data-lock-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Truck fault code — SPN/FMI and dealer code lookup</title>
+<meta name="description" content="Free truck fault code lookup: J1939 standard (SPN/FMI) and factory tables for 80+ makes. Enter a code from your scanner or dashboard.">
+<meta name="theme-color" content="#070B12">
+<link rel="canonical" href="https://dieselcodes.com/">
+<link rel="preload" as="image" type="image/webp" href="/assets/tyagach-noch-800.webp" media="(max-width: 480px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="/assets/tyagach-noch-1400.webp" media="(min-width: 481px)" fetchpriority="high">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dieselcodes.com/">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Truck fault code — SPN/FMI and dealer code lookup">
+<meta property="og:description" content="Free truck fault code lookup: J1939 standard (SPN/FMI) and factory tables for 80+ makes. Enter a code from your scanner or dashboard.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "DieselCodes", "url": "https://dieselcodes.com/", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://dieselcodes.com/?q={search_term_string}"}, "query-input": "required name=search_term_string"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "url": "https://dieselcodes.com/"}}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "DieselCodes", "url": "https://dieselcodes.com/", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}</script>
+<style>
+:root{
+  --night:#070B12;
+  --dusk:#0E2434;
+  --steel:#16202C;
+  --ink:#EEF3F9;
+  --ink-2:#9FB0C2;
+  --ink-3:#7A8998;
+  --lamp:#FF9B3D;      --horizon:#E8894A;   --marker:#FF5A4E;    --root:#FFD24A;      --signal:#6FE3D3;
+  --line:rgba(255,255,255,.13);
+  --line-2:rgba(255,255,255,.06);
+  --sans:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"Cascadia Mono",Consolas,"SF Mono",ui-monospace,"Roboto Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{position:relative}
+body{
+  background:var(--night);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100vh;
+}
+
+.scene{
+  position:relative;isolation:isolate;overflow:hidden;
+  background:var(--night);
+  padding:clamp(34px,7vw,70px) 0 clamp(250px,38vw,380px);
+}
+.scene .photo{
+  position:absolute;left:0;right:0;bottom:0;height:52%;z-index:-2;
+  background:url("/assets/tyagach-noch-1400.webp") center 76%/cover no-repeat;
+  filter:saturate(1.35) contrast(1.06) brightness(1.22);
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 26%, #000 78%, transparent 100%);
+          mask-image:linear-gradient(180deg, transparent 0%, #000 26%, #000 78%, transparent 100%);
+}
+@media (max-width:480px){.scene .photo{background-image:url("/assets/tyagach-noch-800.webp")}}
+
+.scene .veil{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:
+    linear-gradient(180deg,
+      rgba(7,11,18,.92) 0%,
+      rgba(7,11,18,.80) 30%,
+      rgba(7,11,18,.52) 56%,
+      rgba(7,11,18,.16) 74%,
+      rgba(7,11,18,.55) 94%,
+      var(--night) 100%),
+    radial-gradient(105% 52% at 20% 90%, rgba(232,137,74,.30), transparent 62%),
+    radial-gradient(80% 46% at 84% 6%, rgba(18,74,102,.42), transparent 66%);
+}
+.w{max-width:800px;margin:0 auto;padding:0 clamp(18px,5vw,28px)}
+
+.brand{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:#93A6B8;margin-bottom:clamp(26px,7vw,54px);
+}
+.brand i{width:22px;height:1px;background:var(--lamp);flex:none;opacity:.8}
+
+h1{
+  font-size:clamp(26px,4.6vw,38px);line-height:1.16;margin:0 0 14px;
+  letter-spacing:-.018em;font-weight:670;max-width:22ch;
+  text-shadow:0 2px 30px rgba(7,11,18,.7);
+}
+h1 em{font-style:normal;color:var(--lamp);white-space:nowrap}
+.purpose{
+  position:relative;max-width:66ch;
+  margin:0 0 clamp(26px,5vw,36px);padding-left:clamp(14px,2.5vw,20px);
+}
+.purpose::before{
+  content:"";position:absolute;left:0;top:5px;bottom:5px;width:2px;border-radius:2px;
+  background:linear-gradient(180deg, var(--lamp), rgba(255,155,61,.05));
+}
+.purpose p{margin:0;text-shadow:0 1px 16px rgba(7,11,18,.85)}
+.purpose .stats{
+  font-size:13px;letter-spacing:.02em;color:var(--lamp);
+  text-transform:uppercase;font-weight:700;
+}
+.purpose .do{
+  margin-top:8px;font-size:clamp(15.5px,2.3vw,18px);line-height:1.4;
+  color:#F0F5FA;font-weight:450;letter-spacing:-.005em;
+}
+
+.scanner{
+  position:relative;
+  background:linear-gradient(180deg, rgba(22,32,44,.92), rgba(10,16,24,.94));
+  border:1px solid var(--line);border-radius:18px;
+  padding:6px 6px 6px 16px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 24px 60px -28px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.scanner .demo-tag{
+  position:absolute;left:16px;top:-9px;
+  background:var(--lamp);color:#1A1206;
+  font-size:11px;font-weight:700;letter-spacing:.04em;
+  padding:2px 9px;border-radius:999px;text-transform:uppercase;
+  opacity:0;transform:translateY(4px);
+  transition:opacity .25s ease, transform .25s ease;
+  pointer-events:none;
+}
+.scanner.demo .demo-tag{opacity:1;transform:translateY(0)}
+[data-theme="light"] .scanner .demo-tag{color:#fff}
+.scanner:focus-within{
+  border-color:rgba(255,155,61,.7);
+  box-shadow:0 24px 60px -28px rgba(0,0,0,.95), 0 0 0 3px rgba(255,155,61,.15);
+}
+#pf-code{
+  flex:1;min-width:0;background:transparent;border:none;outline:none;color:#fff;
+  font-family:var(--mono);font-size:clamp(17px,4.2vw,21px);letter-spacing:.04em;
+  padding:14px 2px;
+}
+#pf-code::placeholder{color:#4A5765}
+#pf-go{
+  flex:none;cursor:pointer;border:none;border-radius:12px;
+  background:linear-gradient(180deg, #FFAA55, #F2833C);
+  color:#20120A;font-family:var(--sans);font-weight:700;font-size:15px;
+  padding:14px 22px;
+  transition:transform .18s cubic-bezier(.22,1,.36,1), filter .18s ease;
+}
+#pf-go:hover{transform:translateY(-1px);filter:brightness(1.07)}
+#pf-go:active{transform:translateY(0)}
+#pf-go:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.filters select{
+  flex:1 1 150px;min-width:0;cursor:pointer;
+  font-family:var(--sans);font-size:13.5px;color:var(--ink-2);
+  background:rgba(12,19,28,.8);border:1px solid var(--line);border-radius:12px;
+  padding:11px 12px;min-height:44px;
+  transition:border-color .18s ease,color .18s ease;
+}
+.filters select:hover{color:var(--ink)}
+.filters select:focus{outline:none;border-color:rgba(111,227,211,.5);color:var(--ink)}
+.filters select option{background:#0E1620;color:#EEF3F9}
+#pf-brand optgroup{font-style:normal;color:var(--lamp)}
+
+.modes{
+  display:flex;gap:6px;margin:0 0 12px;padding:4px;
+  border:1px solid var(--line);border-radius:14px;background:rgba(12,19,28,.8);
+}
+.mode-btn{
+  flex:1 1 0;min-width:0;min-height:40px;cursor:pointer;
+  border:1px solid transparent;border-radius:10px;background:none;
+  color:var(--ink-2);font-family:var(--sans);font-size:14px;font-weight:600;line-height:1.2;
+  padding:8px 10px;transition:color .18s ease, background .18s ease, border-color .18s ease;
+}
+.mode-btn:hover{color:var(--ink)}
+.mode-btn[aria-pressed="true"]{
+  background:rgba(255,155,61,.16);border-color:rgba(255,155,61,.55);color:var(--lamp);
+}
+.mode-btn:focus-visible{outline:2px solid var(--lamp);outline-offset:2px}
+.mode-btn[hidden]{display:none}
+@media(max-width:560px){
+  .mode-btn{font-size:13px;padding:8px 4px}
+}
+
+.out:not(:empty){margin-top:clamp(22px,4vw,30px)}
+.card{
+  border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(180deg, rgba(16,24,34,.93), rgba(9,14,21,.95));
+  padding:clamp(18px,4vw,26px);
+  box-shadow:0 30px 70px -34px rgba(0,0,0,.95);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.chain{list-style:none;margin:0;padding:0}
+.chain li{
+  position:relative;padding:0 0 18px 32px;
+  opacity:0;transform:translateY(6px);
+  animation:rise .4s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay:calc(var(--s,0) * 120ms);
+}
+@keyframes rise{to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){ .chain li{animation:none;opacity:1;transform:none} }
+.chain li:last-child{padding-bottom:0}
+.chain li::before{content:"";position:absolute;left:8px;top:17px;bottom:-1px;width:1px;background:var(--line)}
+.chain li:last-child::before{display:none}
+.chain li i{
+  position:absolute;left:3px;top:5px;width:11px;height:11px;border-radius:50%;
+  background:var(--night);border:2px solid var(--ink-3);
+}
+.chain li.ok i{border-color:var(--signal);box-shadow:0 0 0 4px rgba(111,227,211,.14)}
+.chain li.hit i{border-color:var(--marker);box-shadow:0 0 0 4px rgba(255,90,78,.16)}
+.chain .st{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:5px;
+}
+.chain .tx{font-size:15.5px;color:#CBD7E3;line-height:1.5}
+.chain .tx b{color:#fff;font-weight:600}
+.mono{font-family:var(--mono);font-size:15px;color:var(--signal);letter-spacing:.04em}
+.crit{color:var(--marker);font-weight:700}
+.warn{color:var(--lamp);font-weight:700}
+.miss{
+  padding:15px 17px;border-left:3px solid var(--lamp);border-radius:0 12px 12px 0;
+  background:rgba(28,20,12,.88);font-size:14.5px;color:#DCE5EE;line-height:1.55;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.miss + .card,.card + .miss{margin-top:12px}
+
+.theme-btn{
+  position:fixed;top:clamp(14px,2.5vw,22px);right:clamp(14px,2.5vw,22px);z-index:20;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;cursor:pointer;color:var(--signal);
+  background:rgba(12,19,28,.78);border:1px solid rgba(111,227,211,.32);border-radius:12px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .18s ease,background .18s ease;
+}
+.theme-btn:hover{border-color:rgba(111,227,211,.55);background:rgba(12,19,28,.9)}
+.theme-btn:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+.theme-btn svg{width:19px;height:19px;display:block}
+.theme-btn .ic-moon{display:none}
+[data-theme="light"] .theme-btn{background:rgba(255,255,255,.9);border-color:rgba(11,122,106,.4)}
+[data-theme="light"] .theme-btn:hover{background:#fff;border-color:rgba(11,122,106,.65)}
+[data-theme="light"] .theme-btn .ic-moon{display:block}
+[data-theme="light"] .theme-btn .ic-sun{display:none}
+
+@media(max-width:560px){
+  .theme-btn{position:absolute}
+  .scene{padding-top:76px}
+  .filters{flex-direction:column}
+  .filters select{flex:1 1 auto}
+  .scanner{
+    flex-wrap:wrap;background:none;border:none;box-shadow:none;
+    padding:0;gap:0;backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  .scanner:focus-within{border:none;box-shadow:none}
+  #pf-code{
+    flex:1 1 100%;order:1;
+    background:linear-gradient(180deg, rgba(22,32,44,.92), rgba(10,16,24,.94));
+    border:1px solid var(--line);border-radius:14px;padding:15px 16px;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  #pf-code:focus{
+    border-color:rgba(255,155,61,.7);
+    box-shadow:0 0 0 3px rgba(255,155,61,.15);
+  }
+  #pf-go{order:2;flex:1 1 100%;margin-top:9px;padding:16px 22px}
+}
+
+.lang-switch{
+  position:fixed;top:clamp(14px,2.5vw,22px);left:clamp(14px,2.5vw,22px);z-index:20;
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(12,19,28,.78);border:1px solid rgba(111,227,211,.32);border-radius:12px;
+  padding:9px 12px;min-height:44px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:border-color .18s ease,background .18s ease;
+}
+.lang-switch:hover{border-color:rgba(111,227,211,.55);background:rgba(12,19,28,.9)}
+.lang-switch svg{width:15px;height:15px;flex:none;color:var(--signal)}
+.lang-switch .chev{width:11px;height:11px;color:var(--ink-3);margin-left:-2px}
+.lang-switch select{
+  appearance:none;-webkit-appearance:none;-moz-appearance:none;
+  background:transparent;border:none;outline:none;
+  color:var(--ink);font-family:var(--sans);font-size:13.5px;font-weight:700;
+  letter-spacing:.03em;cursor:pointer;
+}
+.lang-switch select:hover{color:#fff}
+.lang-switch select:focus-visible{outline:2px solid var(--lamp);outline-offset:3px}
+.lang-switch select option{background:#0E1620;color:#EEF3F9}
+@media(max-width:560px){
+  .lang-switch{position:absolute}
+}
+.datanote{
+  display:none;margin:10px 0 0;font-size:12px;color:#8FA2B4;line-height:1.5;
+  text-shadow:0 1px 12px rgba(7,11,18,.9);
+}
+
+.verdict{
+  display:flex;align-items:flex-start;gap:14px;
+  border-radius:16px;padding:16px 18px;margin-bottom:14px;
+  border:1px solid;
+}
+.verdict .vmark{flex:none;width:26px;height:26px;margin-top:1px}
+.verdict .vmark svg{width:100%;height:100%;display:block;fill:currentColor}
+.verdict .vtitle{
+  display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;line-height:1.25;
+}
+.verdict .vsub{display:block;margin-top:3px;font-size:13.5px;line-height:1.5;color:#C3D0DD}
+.verdict .vcount{
+  margin-left:auto;flex:none;align-self:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);text-align:right;
+}
+.verdict.stop{
+  color:var(--marker);
+  border-color:rgba(255,90,78,.42);
+  background:linear-gradient(180deg, rgba(48,17,15,.92), rgba(24,11,12,.94));
+}
+.verdict.warn{
+  color:var(--lamp);
+  border-color:rgba(255,155,61,.38);
+  background:linear-gradient(180deg, rgba(44,29,13,.92), rgba(22,15,9,.94));
+}
+
+.root{
+  position:relative;border:1px solid rgba(255,210,74,.4);border-radius:14px;
+  background:linear-gradient(180deg, rgba(38,31,12,.9), rgba(20,17,10,.92));
+  padding:14px 16px;
+}
+.root .rcode{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:7px;
+}
+.root .rcode .mono{color:var(--root);font-size:15.5px;font-weight:600}
+.root .rtext{font-size:15.5px;line-height:1.5;color:#fff;font-weight:600}
+.root .rwhy{margin-top:9px;font-size:13px;line-height:1.5;color:var(--ink-2)}
+
+.sys{
+  flex:none;font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:6px;padding:2px 7px;
+  background:rgba(255,255,255,.03);
+}
+
+.grp{margin-top:16px}
+.grp > .st{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:9px;
+}
+.cons{list-style:none;margin:0;padding:0 0 0 15px;border-left:1px solid var(--line-2)}
+.cons li{
+  display:flex;gap:12px;align-items:baseline;
+  padding:7px 0;font-size:14.5px;line-height:1.5;color:#AFBECD;
+}
+.cons li + li{border-top:1px solid var(--line-2)}
+.cons li span:last-child{flex:1;min-width:0}
+.cons .mono{font-size:13.5px;color:var(--ink-2);flex:none;min-width:11ch}
+.cons li.hit .mono{color:var(--marker)}
+.solo{padding-left:0;border-left:none}
+.solo li .mono{color:var(--signal)}
+
+.todo{margin:0;padding:0 0 0 20px;font-size:14.5px;line-height:1.6;color:#CBD7E3}
+.todo li{padding:4px 0}
+.todo li::marker{color:var(--lamp);font-family:var(--mono);font-size:12px}
+
+.risk{
+  border:1px solid var(--line);border-radius:14px;
+  background:rgba(255,255,255,.022);padding:14px 16px;
+}
+.risk .rkh{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:11px}
+.risk .rkb{
+  flex:none;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;
+}
+.risk .rkl{display:flex;gap:3px;margin-left:auto}
+.risk .rkl i{width:17px;height:4px;border-radius:2px;background:var(--line-2)}
+.risk .rkl i.on{background:currentColor}
+.risk p{margin:0;font-size:14.5px;line-height:1.6;color:#CBD7E3}
+.risk p + p{margin-top:9px;color:#AFBECD}
+.risk.t-now{color:var(--marker);border-color:rgba(255,90,78,.3)}
+.risk.t-warn{color:var(--lamp);border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:var(--signal);border-color:rgba(111,227,211,.24)}
+.card > .grp:first-child{margin-top:0}
+
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.acts .act{
+  flex:1 1 200px;min-height:52px;padding:14px 16px;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--sans);font-size:14.5px;font-weight:650;
+  border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.03);color:var(--ink);
+  transition:border-color .16s ease,background .16s ease;
+}
+.acts .act:hover{border-color:rgba(111,227,211,.45);background:rgba(255,255,255,.06)}
+.acts .act:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.acts .act-main{
+  border-color:transparent;color:#20120A;
+  background:linear-gradient(180deg,#FFAA55,#F2833C);
+}
+.acts .act svg{width:17px;height:17px;flex:none}
+.brandless{margin:12px 0 4px}
+.brandless-ask{min-height:40px;padding:9px 14px;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:600;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink);transition:border-color .16s ease}
+.brandless-ask:hover{border-color:rgba(111,227,211,.45)}
+.brandless-ask:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+[data-theme="light"] .brandless-ask{background:#fff;color:var(--ink)}
+[data-theme="light"] .acts .act{background:#fff;color:var(--ink)}
+[data-theme="light"] .acts .act-main{color:#20120A}
+@media print{ .acts{display:none !important} }
+
+@media(max-width:560px){
+  .verdict{flex-wrap:wrap;gap:11px;padding:14px}
+  .verdict .vcount{margin-left:0;width:100%;text-align:left;align-self:auto}
+  .cons li{gap:6px}
+}
+
+[data-theme="light"]{
+  --night:#EEF2F7; --dusk:#DCE6EF; --steel:#E3EAF2;
+  --ink:#0F1720; --ink-2:#44586C; --ink-3:#5A6C7D;
+  --lamp:#A9490A; --horizon:#B45309; --marker:#C1271A;
+  --root:#8A6300; --signal:#0B7A6A;
+  --line:rgba(15,23,32,.16); --line-2:rgba(15,23,32,.08);
+}
+[data-theme="light"] .scene .photo{filter:saturate(1.1) contrast(1) brightness(1.14)}
+[data-theme="light"] .scene .veil{
+  background:linear-gradient(180deg,
+    rgba(238,242,247,.97) 0%, rgba(238,242,247,.94) 32%,
+    rgba(238,242,247,.68) 58%, rgba(238,242,247,.30) 76%,
+    rgba(238,242,247,.58) 100%);
+}
+[data-theme="light"] h1,
+[data-theme="light"] .purpose p,
+[data-theme="light"] .datanote{text-shadow:none}
+[data-theme="light"] .brand{color:var(--ink-3)}
+[data-theme="light"] .purpose{color:var(--ink)}
+[data-theme="light"] .purpose .do{color:var(--ink)}
+[data-theme="light"] .filters select{background:#fff}
+[data-theme="light"] .filters select:focus{border-color:rgba(11,122,106,.6)}
+[data-theme="light"] .filters select option{background:#fff;color:#0F1720}
+[data-theme="light"] .datanote{color:var(--ink-3)}
+[data-theme="light"] .scanner{
+  background:#fff;
+  box-shadow:0 18px 40px -26px rgba(15,23,32,.45), inset 0 1px 0 rgba(255,255,255,.9);
+}
+[data-theme="light"] .scanner:focus-within{
+  border-color:rgba(169,73,10,.6);
+  box-shadow:0 18px 40px -26px rgba(15,23,32,.45), 0 0 0 4px rgba(169,73,10,.14);
+}
+[data-theme="light"] #pf-code{color:var(--ink)}
+@media(max-width:560px){
+  [data-theme="light"] #pf-code{background:#fff}
+}
+[data-theme="light"] #pf-code::placeholder{color:#8494A4}
+[data-theme="light"] .modes{background:#fff}
+[data-theme="light"] .card{background:#fff}
+[data-theme="light"] .chain .tx{color:#1F2C38}
+[data-theme="light"] .chain .tx b{color:var(--ink)}
+[data-theme="light"] .chain li i{background:#fff}
+[data-theme="light"] .miss{background:#FFF4E4;color:#2A2118}
+[data-theme="light"] .lang-switch{
+  background:rgba(255,255,255,.9);border-color:rgba(11,122,106,.4);
+}
+[data-theme="light"] .lang-switch:hover{border-color:rgba(11,122,106,.65);background:#fff}
+[data-theme="light"] .lang-switch select:hover{color:#000}
+[data-theme="light"] .lang-switch select option{background:#fff;color:#0F1720}
+[data-theme="light"] .verdict .vsub{color:#33424F}
+[data-theme="light"] .verdict.stop{background:#FDECEA;border-color:rgba(193,39,26,.45)}
+[data-theme="light"] .verdict.warn{background:#FDF1E3;border-color:rgba(169,73,10,.42)}
+[data-theme="light"] .root{background:#FDF6DF;border-color:rgba(138,99,0,.45)}
+[data-theme="light"] .root .rtext{color:var(--ink)}
+[data-theme="light"] .sys{background:rgba(15,23,32,.04)}
+[data-theme="light"] .cons li{color:#33424F}
+[data-theme="light"] .todo{color:#26333F}
+[data-theme="light"] .risk{background:#fff}
+[data-theme="light"] .risk p{color:#26333F}
+[data-theme="light"] .risk p + p{color:var(--ink-2)}
+[data-theme="light"] .risk.t-now{border-color:rgba(193,39,26,.35)}
+[data-theme="light"] .risk.t-warn{border-color:rgba(169,73,10,.35)}
+[data-theme="light"] .risk.t-calm{border-color:rgba(11,122,106,.32)}
+[data-theme="light"] .risk .rkl i{background:rgba(15,23,32,.12)}
+[data-theme="light"] .risk .rkl i.on{background:currentColor}
+[data-theme="light"] .common a:hover,
+[data-theme="light"] .common .lines a:hover{border-color:rgba(11,122,106,.5)}
+
+@media print{
+  body{background:#fff;color:#000}
+  .scene .photo,.scene .veil,.filters,.modes,.datanote,.theme-btn,.lang-switch,#pf-go{display:none}
+  .scene{padding:0 0 14px;background:#fff}
+  .brand{color:#000;margin-bottom:10px}
+  .brand i{background:#000}
+  h1{font-size:19px;color:#000;text-shadow:none;margin-bottom:6px}
+  h1 em{color:#000}
+  .purpose{display:none}
+  .scanner{
+    background:none;border:none;box-shadow:none;padding:0;backdrop-filter:none;
+  }
+  #pf-code{color:#000;font-size:16px;padding:0}
+  .out{padding-top:8px}
+  .card{background:#fff;border:1px solid #bbb;color:#000}
+  .chain li{opacity:1;transform:none;animation:none}
+  .chain li::before{background:#ccc}
+  .chain li i{background:#fff;border-color:#888}
+  .chain .st{color:#666}
+  .chain .tx{color:#000}
+  .chain .tx b{color:#000}
+  .mono{color:#000}
+  .crit,.warn{color:#000}
+  .miss{background:#f4f4f4;border-left-color:#888;color:#000}
+  .foot{color:#444;padding-top:12px}
+  .risk{background:none;border:1px solid #999;color:#000}
+  .risk p,.risk p + p{color:#000}
+  .risk .rkl{display:none}
+  .verdict{background:none;border:1.5px solid #000;color:#000}
+  .verdict .vsub{color:#000}
+  .verdict .vcount{color:#444}
+  .root{background:none;border:1.5px solid #000}
+  .root .rcode .mono,.root .rtext{color:#000}
+  .root .rwhy{color:#333}
+  .sys{color:#333;border-color:#999;background:none}
+  .cons li,.cons .mono,.todo{color:#000}
+  .cons{border-left-color:#bbb}
+  .cons li + li{border-top-color:#ddd}
+  .grp > .st{color:#666}
+}
+
+.common{max-width:800px;margin:0 auto;padding:8px clamp(18px,5vw,28px) 0}
+.common h2{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;margin:26px 0 12px;
+}
+.common h2:first-child{margin-top:0}
+.common ul{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:7px;
+}
+.common a{
+  display:flex;align-items:center;min-height:44px;
+  text-decoration:none;color:var(--ink-2);font-size:13.5px;
+  border:1px solid var(--line-2);border-radius:9px;padding:8px 11px;
+  transition:color .18s ease,border-color .18s ease;
+}
+.common a:hover{color:var(--ink);border-color:rgba(111,227,211,.4)}
+.common a:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.common a .mono{color:var(--signal);font-size:12.5px;margin-right:7px;white-space:nowrap}
+.common .lines{
+  list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px;
+}
+.common .lines a{
+  display:flex;align-items:center;min-height:44px;
+  text-decoration:none;color:var(--ink-2);font-size:13.5px;
+  border:1px solid var(--line-2);border-radius:9px;padding:8px 13px;
+  transition:color .18s ease,border-color .18s ease;
+}
+.common .lines a:hover{color:var(--ink);border-color:rgba(111,227,211,.4)}
+.common .lines a:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+.common .subhead{
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-3);opacity:.7;font-weight:600;margin:16px 0 8px;
+}
+.common .subhead:first-of-type{margin-top:6px}
+.common .allof{margin:14px 0 0;font-size:13.5px}
+.common .allof a{border-bottom:1px solid rgba(111,227,211,.35)}
+@media print{ .common{display:none} }
+
+.langlinks{
+  max-width:660px;margin:0 auto;padding:22px clamp(18px,5vw,28px) 0;
+  font-size:13px;line-height:1.9;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:4px 16px;
+}
+.langlinks a{color:inherit;text-decoration:none;border-bottom:1px dotted currentColor;white-space:nowrap}
+.langlinks a:hover,.langlinks a:focus-visible{color:var(--signal)}
+.langlinks-cur{color:var(--ink)}
+.foot{
+  max-width:660px;margin:0 auto;padding:26px clamp(18px,5vw,28px) 70px;
+  font-size:13px;color:var(--ink-3);line-height:1.6;
+}
+.copy-mail{
+  display:inline-block;margin:0 0 0 8px;vertical-align:baseline;padding:4px 12px;
+  font:inherit;font-size:12px;line-height:1.4;color:inherit;
+  background:none;border:1px solid currentColor;border-radius:6px;
+  opacity:.85;cursor:pointer;
+}
+.copy-mail:hover,.copy-mail:focus-visible{opacity:1}
+</style>
+<script>
+(function(){
+  var v = null;
+  try{ v = localStorage.getItem('ct-theme'); }catch(e){}
+  var m = /[?&]theme=(light|dark)/.exec(location.search);
+  if(m) v = m[1];
+  if(v === 'light') document.documentElement.setAttribute('data-theme', 'light');
+})();
+</script>
+<style>.na{color:#8B9AAC}.near .na{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;font-size:14.5px;line-height:1.45}.near .na .mono{color:#6FE3D3;flex:none;min-width:5.4em}.near .na .nm{flex:1}.jump .na{margin-right:12px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+
+<div class="lang-switch" style="display:none" hidden><select id="pf-lang" aria-label="Page language"><option value="en">EN</option></select></div>
+
+<button type="button" id="pf-theme" class="theme-btn" title="Light theme" aria-label="Light theme">
+  <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2"/>
+    <path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/>
+  </svg>
+  <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/>
+  </svg>
+</button>
+
+<div class="scene">
+  <div class="photo" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="w">
+    <h1 data-i18n="h1">The <em>Check&nbsp;Engine</em> light is on — what does the code mean?</h1>
+    <div class="purpose">
+      <p class="stats" data-i18n="purposeStats">39,000+ fault codes across 80+ makes and systems</p>
+      <p class="do" data-i18n="purposeDo">Enter one code — or the whole fault list exactly as it is: separated by commas, spaces or line breaks. One fault drags five or six codes along — we show which one is the cause and which just followed, and tell you whether it’s safe to drive.</p>
+    </div><p class="how" style="margin:12px 0 0;font-size:14px;opacity:.85">Not sure how the verdict is reached? <a href="/how-we-rate.html">How we decide whether you can keep driving</a></p>
+
+    <div class="modes" id="pf-modes" role="group" aria-label="Search mode">
+      <button type="button" class="mode-btn" data-mode="main" aria-pressed="true" data-i18n="modeMotor">Engine & ECUs</button>
+      <button type="button" class="mode-btn" data-mode="heater" aria-pressed="false" data-i18n="modeHeater">Heater</button>
+      <button type="button" class="mode-btn" data-mode="tacho" aria-pressed="false" hidden data-i18n="modeTacho">Tachograph</button>
+    </div>
+    <div class="scanner" id="pf-scanner">
+      <span class="demo-tag" data-i18n="demoTag">example</span>
+      <input id="pf-code" type="text" inputmode="text" autocomplete="off" autofocus
+             placeholder="SPN 100 FMI 1" aria-label="Fault code">
+      <button id="pf-go" type="button" data-i18n="goBtn">Decode</button>
+    </div>
+
+    <div class="filters">
+      <select id="pf-brand" aria-label="Truck make"><option value="" data-i18n="brandDefault">— any make —</option></select>
+      <select id="pf-mid" aria-label="Module (MID)" style="display:none"><option value="" data-i18n="midDefault">No MID in the code — taking the engine module, MID 128.</option></select>
+      <select id="pf-standard" aria-label="Code standard">
+        <option value="auto" data-i18n="standardAuto">Detect automatically</option>
+        <option value="spnfmi" data-i18n="standardSpnFmi">J1939 — SPN / FMI</option>
+        <option value="pcode" data-i18n="standardPcode">Dealer / OBD code</option>
+      </select>
+    </div>
+
+
+    <p class="datanote" id="pf-datanote" data-i18n="dataLangNote">Fault names and factory tables in the database are in Russian; the interface and the standard FMI meanings below are translated.</p>
+
+    <div class="out" id="pf-out"></div>
+  </div>
+</div>
+
+<nav class="common">
+  <h2 data-i18n="commonTitle">Common fault codes</h2>
+  <ul>
+    <li><span class="na"><span class="mono">SPN 639</span> — J1939 Network #1</span></li>
+    <li><span class="na"><span class="mono">SPN 91</span> — Accelerator pedal position</span></li>
+    <li><span class="na"><span class="mono">SPN 84</span> — Wheel-Based Vehicle Speed</span></li>
+    <li><span class="na"><span class="mono">SPN 633</span> — Fuel Delivery Actuator Control Command 1</span></li>
+    <li><a href="/kody/spn-110.html"><span class="mono">SPN 110</span> — Coolant temperature</a></li>
+    <li><span class="na"><span class="mono">SPN 100</span> — Engine oil pressure</span></li>
+    <li><span class="na"><span class="mono">SPN 102</span> — Intake manifold pressure (boost)</span></li>
+    <li><a href="/kody/spn-157.html"><span class="mono">SPN 157</span> — Injector Metering Rail Pressure #1</a></li>
+    <li><a href="/kody/spn-171.html"><span class="mono">SPN 171</span> — Ambient air temperature</a></li>
+    <li><a href="/kody/spn-168.html"><span class="mono">SPN 168</span> — Battery voltage</a></li>
+    <li><span class="na"><span class="mono">SPN 597</span> — Brake Switch</span></li>
+    <li><a href="/kody/spn-105.html"><span class="mono">SPN 105</span> — Intake manifold air temperature</a></li>
+    <li><span class="na"><span class="mono">SPN 108</span> — Barometric pressure</span></li>
+    <li><a href="/kody/spn-627.html"><span class="mono">SPN 627</span> — Power Source</a></li>
+    <li><a href="/kody/spn-97.html"><span class="mono">SPN 97</span> — Water in fuel indicator</a></li>
+    <li><span class="na"><span class="mono">SPN 190</span> — Engine speed</span></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 789</span> — ABS Wheel Speed Sensor, Axle 1, Left</a></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 790</span> — ABS Wheel Speed Sensor, Axle 1, Right</a></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 791</span> — ABS Wheel Speed Sensor, Axle 2, Left</a></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 792</span> — ABS Wheel Speed Sensor, Axle 2, Right</a></li>
+    <li><a href="/kody/spn-629.html"><span class="mono">SPN 629</span> — Controller #1</a></li>
+    <li><span class="na"><span class="mono">SPN 651</span> — Engine Injector, Cylinder #01</span></li>
+    <li><span class="na"><span class="mono">SPN 652</span> — Engine Injector, Cylinder #02</span></li>
+    <li><a href="/kody/spn-653.html"><span class="mono">SPN 653</span> — Engine Injector, Cylinder #03</a></li>
+    <li><span class="na"><span class="mono">SPN 654</span> — Engine Injector, Cylinder #04</span></li>
+    <li><span class="na"><span class="mono">SPN 655</span> — Engine Injector, Cylinder #05</span></li>
+    <li><span class="na"><span class="mono">SPN 656</span> — Engine Injector, Cylinder #06</span></li>
+    <li><span class="na"><span class="mono">SPN 520</span> — Actual Retarder Percent Torque</span></li>
+    <li><span class="na"><span class="mono">SPN 98</span> — Engine oil level</span></li>
+    <li><span class="na"><span class="mono">SPN 174</span> — Fuel temperature</span></li>
+    <li><span class="na"><span class="mono">SPN 3511</span> — Sensor Supply Voltage 3</span></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 793</span> — ABS Wheel Speed Sensor, Axle 3, Left</a></li>
+    <li><a href="/kody/abs-wheel-speed-sensors-spn-789-794.html"><span class="mono">SPN 794</span> — ABS Wheel Speed Sensor, Axle 3, Right</a></li>
+    <li><span class="na"><span class="mono">SPN 175</span> — Oil temperature</span></li>
+    <li><span class="na"><span class="mono">SPN 636</span> — Engine position sensor</span></li>
+    <li><span class="na"><span class="mono">SPN 904</span> — Front Axle Speed</span></li>
+    <li><span class="na"><span class="mono">SPN 801</span> — Retarder Control Relay</span></li>
+    <li><span class="na"><span class="mono">SPN 677</span> — Starter Relay</span></li>
+    <li><a href="/kody/spn-70.html"><span class="mono">SPN 70</span> — Parking Brake Switch</a></li>
+    <li><a href="/kody/spn-558.html"><span class="mono">SPN 558</span> — Accelerator Pedal Idle Limit Switch #1</a></li>
+  </ul>
+  <p class="allof"><a href="/kody/" data-i18n="allCodes">All fault codes</a></p>
+
+  <h2 data-i18n="bySituation">If you don’t have a code number</h2>
+  <ul class="lines">
+    <li><span class="na">Check Engine light is on</span></li>
+    <li><span class="na">AdBlue error</span></li>
+    <li><span class="na">Power loss</span></li>
+    <li><span class="na">Low oil pressure</span></li>
+    <li><span class="na">Engine overheating</span></li>
+    <li><span class="na">Clogged soot filter</span></li>
+    <li><span class="na">Water in fuel</span></li>
+    <li><a href="/problemy/propalo-pitanie.html" data-i18n="symAllCodes">Faults all over the truck</a></li>
+    <li><a href="/problemy/ne-zavoditsya.html" data-i18n="symNoStart">Engine won't start</a></li>
+    <li><a href="/problemy/glohnet-na-hodu.html" data-i18n="symStalls">Stalls while driving</a></li>
+    <li><a href="/problemy/troit-dvigatel.html" data-i18n="symMisfire">Engine misfiring</a></li>
+    <li><span class="na">Black exhaust smoke</span></li>
+    <li><span class="na">White exhaust smoke</span></li>
+    <li><span class="na">Blue exhaust smoke</span></li>
+    <li><span class="na">High fuel consumption</span></li>
+    <li><span class="na">DPF regeneration won't start</span></li>
+    <li><span class="na">AdBlue pump not dosing</span></li>
+    <li><span class="na">NOx sensor fault</span></li>
+    <li><span class="na">Alternator not charging</span></li>
+    <li><a href="/problemy/ne-nabiraet-vozduh.html" data-i18n="symAir">Air pressure won't build up</a></li>
+    <li><a href="/problemy/gorit-lampa-abs.html" data-i18n="symAbsLamp">ABS warning light on</a></li>
+    <li><span class="na">Parking brake won't release</span></li>
+    <li><span class="na">Gears won't shift</span></li>
+    <li><span class="na">Clutch slipping</span></li>
+    <li><span class="na">Retarder fault</span></li>
+    <li><span class="na">Overheats on climbs</span></li>
+    <li><span class="na">Tachograph fault</span></li>
+    <li><span class="na">Engine brake not working</span></li>
+  </ul>
+  <p class="allof"><a href="/problemy/" data-i18n="allProblems">All symptoms</a></p>
+  <p class="allof"><a href="/razbory/">Breakdowns: codes and faults in detail</a></p>
+
+  <h2 data-i18n="byBrand">By make</h2>
+
+  <p class="subhead" data-i18n="brandGroupVehicles">Vehicle makes</p>
+  <ul class="lines">
+    <li><a href="/marki/kamaz.html" data-i18n="brandKamazLbl">KAMAZ</a></li>
+    <li><span class="na">MAZ</span></li>
+    <li><a href="?b=gaz" data-i18n="brandGazLbl">GAZ</a></li>
+    <li><a href="?b=kraz" data-i18n="brandKrazLbl">KrAZ</a></li>
+    <li><a href="?b=ural" data-i18n="brandUralLbl">Ural</a></li>
+    <li><a href="?b=agrale">Agrale</a></li>
+    <li><span class="na">Ashok Leyland</span></li>
+    <li><a href="?b=beiben">Beiben</a></li>
+    <li><a href="?b=bharatbenz">BharatBenz</a></li>
+    <li><span class="na">DAF</span></li>
+    <li><a href="?b=dodge">Dodge</a></li>
+    <li><span class="na">Dongfeng</span></li>
+    <li><span class="na">FAW</span></li>
+    <li><a href="?b=fordcargo">Ford Cargo</a></li>
+    <li><a href="/marki/ford.html">Ford Trucks</a></li>
+    <li><span class="na">Foton</span></li>
+    <li><a href="?b=freightliner">Freightliner</a></li>
+    <li><span class="na">Hino</span></li>
+    <li><span class="na">HOWO</span></li>
+    <li><span class="na">Hyundai</span></li>
+    <li><span class="na">International</span></li>
+    <li><span class="na">Isuzu</span></li>
+    <li><a href="/marki/iveco.html">Iveco</a></li>
+    <li><span class="na">JAC</span></li>
+    <li><a href="?b=kenworth">Kenworth</a></li>
+    <li><a href="/marki/mack.html">Mack</a></li>
+    <li><span class="na">Mahindra</span></li>
+    <li><span class="na">MAN</span></li>
+    <li><a href="/marki/mercedes.html">Mercedes-Benz</a></li>
+    <li><span class="na">Mitsubishi Fuso</span></li>
+    <li><span class="na">MWM</span></li>
+    <li><a href="?b=peterbilt">Peterbilt</a></li>
+    <li><a href="?b=ram">RAM</a></li>
+    <li><a href="/marki/renault.html">Renault Trucks</a></li>
+    <li><a href="?b=hongyan">SAIC-Iveco Hongyan</a></li>
+    <li><span class="na">Scania</span></li>
+    <li><span class="na">Shacman</span></li>
+    <li><a href="/marki/sitrak.html">SITRAK</a></li>
+    <li><span class="na">Tata Daewoo</span></li>
+    <li><span class="na">Tata Motors</span></li>
+    <li><a href="?b=udtrucks">UD Trucks</a></li>
+    <li><span class="na">Volkswagen Caminhões</span></li>
+    <li><span class="na">Volvo</span></li>
+    <li><a href="?b=westernstar">Western Star</a></li>
+  </ul>
+
+  <p class="subhead" data-i18n="brandGroupSystems">Systems & components</p>
+  <ul class="lines">
+    <li><span class="na">YaMZ</span></li>
+    <li><span class="na">Planar</span></li>
+    <li><a href="?b=teplostar" data-i18n="brandTeplostarLbl">Teplostar</a></li>
+    <li><a href="/marki/allison.html">Allison</a></li>
+    <li><a href="/marki/bendix.html">Bendix ABS/ESP</a></li>
+    <li><span class="na">Carrier Transicold</span></li>
+    <li><span class="na">Caterpillar</span></li>
+    <li><a href="/marki/cumminsisb.html">Cummins ISB</a></li>
+    <li><span class="na">Cummins ISF 2.8/3.8</span></li>
+    <li><span class="na">Cummins ISL/ISC</span></li>
+    <li><span class="na">Cummins ISM</span></li>
+    <li><span class="na">Cummins ISX</span></li>
+    <li><a href="/marki/detroitdiesel.html">Detroit Diesel</a></li>
+    <li><a href="/marki/deutz.html">Deutz</a></li>
+    <li><span class="na">Eaton Fuller</span></li>
+    <li><span class="na">Eberspächer</span></li>
+    <li><span class="na">Ford PowerStroke</span></li>
+    <li><span class="na">Haldex ABS</span></li>
+    <li><span class="na">Jingwei (SITRAK heater)</span></li>
+    <li><span class="na">Knorr-Bremse EBS</span></li>
+    <li><span class="na">Meritor (ex-WABCO)</span></li>
+    <li><span class="na">PACCAR MX-13</span></li>
+    <li><span class="na">Thermo King</span></li>
+    <li><a href="/marki/wabco.html">WABCO ABS/ESC</a></li>
+    <li><span class="na">Webasto</span></li>
+    <li><span class="na">Weichai/Shaanxi WP10/WP12</span></li>
+    <li><a href="/marki/zfastronic.html">ZF AS-Tronic</a></li>
+  </ul>
+  <p class="allof"><a href="/marki/" data-i18n="allBrands">All makes</a></p>
+</nav>
+
+<div class="foot"><span class="foot-t" data-i18n="footText">This reference explains what a code means — it doesn’t diagnose the truck. The final call is always with a person who has the equipment.</span></div>
+
+<script defer src="/assets/app.js"></script>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

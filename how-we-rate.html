@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How we decide whether you can keep driving | DieselCodes</title>
+<meta name="description" content="The verdicts and time levels used on DieselCodes, why we choose the stricter answer when in doubt, and when to stop whatever the verdict says.">
+<link rel="canonical" href="https://dieselcodes.com/how-we-rate.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/how-we-rate.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="How we decide whether you can keep driving | DieselCodes">
+<meta property="og:description" content="The verdicts and time levels used on DieselCodes, why we choose the stricter answer when in doubt, and when to stop whatever the verdict says.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How we decide whether you can keep driving", "name": "How we decide whether you can keep driving", "description": "The verdicts and time levels used on DieselCodes, why we choose the stricter answer when in doubt, and when to stop whatever the verdict says.", "url": "https://dieselcodes.com/how-we-rate.html", "inLanguage": "en", "author": {"@type": "Organization", "name": "DieselCodes editorial team", "url": "https://dieselcodes.com/about.html"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}, "datePublished": "2026-11-14", "dateModified": "2026-11-14", "image": "https://dieselcodes.com/assets/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "How we rate", "item": "https://dieselcodes.com/how-we-rate.html"}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+/* Раньше это были плашки в строку - хорошо, пока подпись короткая.
+   Теперь в ссылке полное название узла, и на телефоне плашки рвались:
+   «SPN» и номер вставали друг под другом, ширина скакала. Строка во всю
+   ширину с колонкой номера читается сверху вниз и не зависит от длины. */
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+/* Ответ на главный вопрос - сразу под заголовком. Подробный блок риска
+   ниже объясняет, а эта строка отвечает: человек на обочине не должен
+   пролистывать десять заводских таблиц, чтобы узнать, ехать ему или нет. */
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+/* Марка - то, что ищут глазами. Раньше она была набрана как шапка
+   таблицы, мелким серым капсом, и терялась среди служебных подписей. */
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.art p,.art li{color:#CBD7E3;font-size:15.5px;line-height:1.65}.art ul,.art ol{margin:0 0 14px;padding-left:22px}.art p{margin:0 0 12px;max-width:68ch}.art td,.art th{overflow-wrap:anywhere}.art td:first-child{font-weight:600;color:#EAF0F7}.art .short{border:1px solid rgba(111,227,211,.3);border-radius:12px;background:rgba(111,227,211,.05);padding:12px 16px;margin:0 0 26px}.art .short p{margin:0}.art h2{margin-top:30px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><span>How we rate</span></div>
+<h1>How we decide whether you can keep driving</h1><p class="upd">Updated: 2026-11-14</p>
+<div class="art">
+<div class="short"><p><b>In short.</b> Every code page and every search result ends in one of two verdicts, <i>Safe to drive</i> or <i>Do not drive</i>, together with how much time you have. When we are unsure, we choose the stricter answer. The verdict is a reference, not a diagnosis, and it never replaces a look at the truck.</p></div>
+<section><h2>The two verdicts</h2>
+<table><tr><th>Verdict</th><th>What it means</th></tr>
+<tr><td>Do not drive</td><td>Stop as soon as it is safe to do so and do not keep going. The fault can damage the truck or make it unsafe within minutes.</td></tr>
+<tr><td>Safe to drive</td><td>The code alone does not call for stopping on the spot. It does not mean &ldquo;fine&rdquo;: right below the verdict the page says how much time you have and what happens if you keep going.</td></tr></table></section>
+<section><h2>How much time you have</h2>
+<p>A bare &ldquo;yes&rdquo; or &ldquo;no&rdquo; is not enough on the roadside, so each verdict comes with one of five time levels, from the most urgent to the least.</p>
+<table><tr><th>Level</th><th>What it means</th></tr>
+<tr><td>Minutes</td><td>Stop now. This is the level for a real loss of oil pressure, overheating of the engine and faults of the brake system. The verdict is <i>Do not drive</i>.</td></tr>
+<tr><td>To the nearest safe stop</td><td>Do not plan a trip; get to a safe place. Typical for the exhaust filter (DPF) stages, a failing voltage supply and fuel delivery problems. The verdict is <i>Safe to drive</i> only for these systems, where we know what happens next. When a code is flagged critical and we have no detailed model of it, the verdict is <i>Do not drive</i> with this same time level.</td></tr>
+<tr><td>Enough to reach the yard</td><td>You can finish the run to the base or a shop, but not carry on as usual. Typical for exhaust treatment (AdBlue), the CAN bus and intake or boost faults.</td></tr>
+<tr><td>Drivable, but watch it yourself</td><td>The code is electrical, an open, a short or a bad contact in a sensor circuit, and the value it measures is most likely fine. The system runs blind until the circuit is repaired, so you must check the real value yourself.</td></tr>
+<tr><td>Until the next service</td><td>A standalone fault with no immediate consequences for driving. Show the codes at the next service; if a second code from the same system appears, stop putting it off.</td></tr></table></section>
+<section><h2>When in doubt, stricter</h2>
+<ul>
+<li>If a code is flagged critical and we have no model of what happens next, the verdict is <i>Do not drive</i>. What we do not understand, we do not risk.</li>
+<li>If our own reading is calm but the manufacturer flags the code as critical, the time level is raised and the page says so openly: if in doubt, it is safer to stop and check on the spot.</li>
+<li>If a make uses a number differently from the standard, we do not let the make's wording hide the standard meaning. Both are shown, and where they differ, the cautious reading is the one to act on.</li>
+<li>If several codes appear at once, the verdict follows the most dangerous code in the list, not the likely root cause. The root cause is shown separately, so you know what to fix first.</li>
+<li>When a code could be either a real fault or a sensor problem and we cannot tell which, the real fault is assumed. A wrong call on the cautious side costs less than a wrong call on the other.</li>
+</ul></section>
+<section><h2>Always stop if</h2>
+<ul>
+<li>a red warning lamp is on;</li>
+<li>the brake pedal feels soft or goes down further than usual;</li>
+<li>oil pressure is dropping.</li>
+</ul>
+<p>In these cases stop as soon as it is safe, whatever a verdict on this site says. If something feels wrong to you, trust that and stop.</p></section>
+<section><h2>What the verdict is not</h2>
+<ul>
+<li>It is not a diagnosis. The site does not see your truck, your load, your route, the weather or any fault your scanner did not read.</li>
+<li>It is not a promise or a guarantee that the truck will reach its destination, or that a repair will fix the problem.</li>
+<li>It is not a roadworthiness or legal opinion.</li>
+</ul>
+<p>The final decision is always with the driver and with a person who has the equipment to examine the truck. If you think a verdict on a page is wrong, see <a href="/about.html#corrections">Corrections</a> on the About page.</p></section>
+</div>
+<p class="cta">Have a code from your scanner? <a href="/">Look it up</a> — or paste the whole list and we will show which fault is the root cause.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webasto F-codes and service codes - what differs</title>
+<meta name="description" content="Table of Air Top 2000 ST F-codes, how Thermo Top Evo differs, how the code appears on the timer and how F-codes differ from the service codes of the diagnostic software.">
+<link rel="canonical" href="https://dieselcodes.com/razbory/webasto-f-kody-i-sluzhebnye-kody.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/razbory/webasto-f-kody-i-sluzhebnye-kody.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Webasto: why service code 03 and F03 are different things">
+<meta property="og:description" content="Table of Air Top 2000 ST F-codes, how Thermo Top Evo differs, how the code appears on the timer and how F-codes differ from the service codes of the diagnostic software.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Webasto: why service code 03 and F03 are different things", "description": "Table of Air Top 2000 ST F-codes, how Thermo Top Evo differs, how the code appears on the timer and how F-codes differ from the service codes of the diagnostic software.", "inLanguage": "en", "datePublished": "2026-11-09", "dateModified": "2026-11-10", "mainEntityOfPage": "https://dieselcodes.com/razbory/webasto-f-kody-i-sluzhebnye-kody.html", "author": {"@type": "Organization", "name": "DieselCodes editorial team", "url": "https://dieselcodes.com/about.html"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}, "image": "https://dieselcodes.com/assets/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Are service code 03 and F03 the same?", "acceptedAnswer": {"@type": "Answer", "text": "No. On the Air Top 2000 ST service 03 is flame-out, which the timer shows as F02. F03 is the on-board voltage."}}, {"@type": "Question", "name": "Why does the same F-code mean something else on the Thermo Top Evo?", "acceptedAnswer": {"@type": "Answer", "text": "The code tables differ between models. For example F11 is the overheat sensor on the Air Top 2000 ST and the coolant pump on the Thermo Top Evo."}}, {"@type": "Question", "name": "Will a Telestart or ThermoCall controller show an F-code?", "acceptedAnswer": {"@type": "Answer", "text": "No, they show the link, battery charge and module state. The F-code comes from the heater or its indicator."}}, {"@type": "Question", "name": "What does the number of long flashes on the ON indicator equal?", "acceptedAnswer": {"@type": "Answer", "text": "The F-code number: after 5 seconds of rapid flashing, four long flashes are F04. Plain rapid flashing means F00."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "Breakdowns", "item": "https://dieselcodes.com/razbory/"}, {"@type": "ListItem", "position": 3, "name": "Webasto: why service code 03 and F03 are different things", "item": "https://dieselcodes.com/razbory/webasto-f-kody-i-sluzhebnye-kody.html"}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.na{color:#8B9AAC}.near .na{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;font-size:14.5px;line-height:1.45}.near .na .mono{color:#6FE3D3;flex:none;min-width:5.4em}.near .na .nm{flex:1}.jump .na{margin-right:12px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><a href="/razbory/">Breakdowns</a><span class="sep">&rsaquo;</span><span>Webasto: why service code 03 and F03 are different things</span></div>
+<style>.art p,.art li{color:#CBD7E3;font-size:15.5px;line-height:1.65}.art ul,.art ol{margin:0 0 14px;padding-left:22px}.art p{margin:0 0 12px;max-width:68ch}.art table{margin:0 0 18px}.art td,.art th{overflow-wrap:anywhere}.art td:first-child{font-weight:600;color:#EAF0F7}.art h3.faq-q{font-size:1em;font-weight:700;margin:14px 0 4px}.art .short{border:1px solid rgba(111,227,211,.3);border-radius:12px;background:rgba(111,227,211,.05);padding:12px 16px;margin:0 0 26px}.art .short p{margin:0}.art .gt{margin:26px 0 10px;font-size:17px}.razb ul{margin:0}</style><div class="art"><h1>Webasto: why service code 03 and F03 are different things</h1><p class="upd">Updated: 2026-11-10</p><form class="sf" action="/" method="get" role="search"><input type="search" name="q" placeholder="Your code, e.g. 1078/3" aria-label="Fault code" autocomplete="off" inputmode="text"><button type="submit">Search</button></form><div class="short"><p><b>In short.</b> Webasto has two code systems: F00-F15 on the timer and hexadecimal service codes in the workshop software. The digits coincide, the meaning does not: service 03 is flame-out, F03 is voltage. A driver needs the F-code and the model of the heater.</p></div><section><h2>Where the confusion comes from</h2><p>One F-code on the timer groups several service codes. On the Air Top 2000 ST service code 03 is flame-out, which the timer shows as F02. F03 is a voltage problem, with service codes 84 and 04. The Thermo Top Evo table has no service code 03 at all.</p></section><section><h2>Air Top 2000 ST F-codes</h2><table><tr><th>On the timer</th><th>What happened</th></tr><tr><td>F00</td><td>Control unit fault</td></tr><tr><td>F01</td><td>No start</td></tr><tr><td>F02</td><td>Flame-out</td></tr><tr><td>F03</td><td>Voltage: below 10.5 V (21 V on a 24 V system) for more than 20 s or above 16 V (32 V) for more than 6 s</td></tr><tr><td>F04</td><td>Flame before combustion starts</td></tr><tr><td>F05</td><td>Flame sensor (petrol only)</td></tr><tr><td>F06</td><td>External temperature sensor</td></tr><tr><td>F07</td><td>Metering pump</td></tr><tr><td>F08</td><td>Drive: combustion and heating air fan</td></tr><tr><td>F09</td><td>Glow plug</td></tr><tr><td>F10</td><td>Overheating</td></tr><tr><td>F11</td><td>Overheat sensor</td></tr><tr><td>F12</td><td>Heater lock-out</td></tr><tr><td>F14</td><td>Overheat sensor installed incorrectly</td></tr><tr><td>F15</td><td>Setpoint potentiometer</td></tr></table><p>This model has no F13.</p></section><section><h2>What changes on the Thermo Top Evo</h2><p>The numbers are the same, but some meanings differ:</p><table><tr><th>Code</th><th>Air Top 2000 ST</th><th>Thermo Top Evo</th></tr><tr><td>F11</td><td>overheat sensor</td><td>coolant pump</td></tr><tr><td>F14</td><td>overheat sensor installed incorrectly</td><td>overheat sensor</td></tr><tr><td>F15</td><td>setpoint potentiometer</td><td>glow plug circuit</td></tr><tr><td>F13</td><td>none</td><td>vehicle fan</td></tr><tr><td>F16</td><td>none</td><td>high exhaust temperature</td></tr><tr><td>F17</td><td>none</td><td>exhaust sensor</td></tr><tr><td>F05, F12</td><td>present</td><td>absent</td></tr></table><p>F03 on the Thermo Top Evo is also about the on-board voltage. The repair table labels it &quot;too high&quot;, the user manual &quot;too low or raised&quot;; for the driver it is one thing: check the supply voltage. The conclusion: read an F-code only together with the heater model.</p></section><section><h2>How the driver sees the code</h2><ul><li><b>Combined timer on the Air Top 2000 ST:</b> a code number on the screen until the fault is cleared; the manual advises contacting a Webasto service.</li><li><b>ON indicator without a display:</b> 5 seconds of rapid flashing, then the number of long flashes equals the F-code number (F04 is four long flashes). Plain rapid flashing is F00.</li><li><b>MultiControl and SmartControl on the Thermo Top Evo:</b> F01-F15 on the display, while F16-F19 show as &quot;- -&quot;. Codes of the form TXX belong to the controller itself.</li><li><b>W-bus and analog connection on the Thermo Top Evo:</b> hexadecimal Hxx numbers over W-bus, Fxx over analog.</li></ul><p>Telestart and ThermoCall controllers show neither the F-code number nor the fact of a heater fault, only the state of the link, battery and module. ThermoCall has a general warning (the heater does not execute the command, service needed). The F-code comes from the heater itself or the indicator in the cab.</p></section><section><h2>What you can do and when to see a workshop</h2><ul><li>identify the heater model and the type of controller;</li><li>for F03, inspect the terminals and charge the battery;</li><li>do not compare the number with the service-code table: use the table for your model.</li></ul><p>Factory manuals leave the driver little to do. The Webasto instruction directly advises contacting a service for any number code on the timer. Diagnostics are needed for F00, F07, F08, F09, F10 and F11: the control unit, pump, drive, glow plug and overheating.</p></section><section><h2>Questions and answers</h2><h3 class="faq-q">Are service code 03 and F03 the same?</h3><p>No. On the Air Top 2000 ST service 03 is flame-out, which the timer shows as F02. F03 is the on-board voltage.</p><h3 class="faq-q">Why does the same F-code mean something else on the Thermo Top Evo?</h3><p>The code tables differ between models. For example F11 is the overheat sensor on the Air Top 2000 ST and the coolant pump on the Thermo Top Evo.</p><h3 class="faq-q">Will a Telestart or ThermoCall controller show an F-code?</h3><p>No, they show the link, battery charge and module state. The F-code comes from the heater or its indicator.</p><h3 class="faq-q">What does the number of long flashes on the ON indicator equal?</h3><p>The F-code number: after 5 seconds of rapid flashing, four long flashes are F04. Plain rapid flashing means F00.</p></section><section><h2>Code pages on the site</h2><ul class="lines"><li><span class="na">F03 - on-board voltage</span></li><li><span class="na">F02 - flame-out</span></li><li><span class="na">F07 - metering pump</span></li><li><span class="na">F08 - fan drive</span></li><li><span class="na">F09 - glow plug</span></li><li><span class="na">F10 - overheating</span></li><li><span class="na">All Webasto codes</span></li></ul></section><p class="sub">Checked against manufacturer manuals and tables; the same facts as in our videos and articles. The decision to drive remains with the driver.</p><p><a href="/razbory/">&larr; All breakdowns</a></p></div><p class="cta">Cannot find your code? <a href="/">Type it into the search</a> — or paste the whole list from the scanner and we will show which fault is the real one.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

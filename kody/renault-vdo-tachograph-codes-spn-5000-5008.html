@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renault Tachograph Codes SPN 5000-5008</title>
+<meta name="description" content="SPN 5000 to 5008 on Renault Trucks are tachograph faults, not genset faults. Wording per code, repairs and whether you can drive.">
+<link rel="canonical" href="https://dieselcodes.com/kody/renault-vdo-tachograph-codes-spn-5000-5008.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/kody/renault-vdo-tachograph-codes-spn-5000-5008.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Renault Tachograph Codes SPN 5000-5008">
+<meta property="og:description" content="SPN 5000 to 5008 on Renault Trucks are tachograph faults, not genset faults. Wording per code, repairs and whether you can drive.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Renault Tachograph Codes SPN 5000-5008", "description": "SPN 5000 to 5008 on Renault Trucks are tachograph faults, not genset faults. Wording per code, repairs and whether you can drive.", "url": "https://dieselcodes.com/kody/renault-vdo-tachograph-codes-spn-5000-5008.html", "inLanguage": "en", "author": {"@type": "Organization", "name": "DieselCodes editorial team", "url": "https://dieselcodes.com/about.html"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}, "datePublished": "2026-11-13", "dateModified": "2026-11-13", "image": "https://dieselcodes.com/assets/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "Codes", "item": "https://dieselcodes.com/kody/"}, {"@type": "ListItem", "position": 3, "name": "Renault Tachograph Codes SPN 5000-5008", "item": "https://dieselcodes.com/kody/renault-vdo-tachograph-codes-spn-5000-5008.html"}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Why does my SPN 5001 say Genset Output Voltage Range Status when it is a tachograph fault?", "acceptedAnswer": {"@type": "Answer", "text": "The J1939 table lists SPN 5001 under that genset name, while the Renault Trucks wording is a VDO tachograph with display, warning indicator fault. The same is true of SPN 5004 (activity stylus fault) and SPN 5005 (stepper motor fault)."}}, {"@type": "Question", "name": "What is the difference between SPN 5005 and SPN 5006?", "acceptedAnswer": {"@type": "Answer", "text": "Both have the Renault Trucks wording stepper motor fault, with the repair to replace the tachograph. They are listed under different J1939 names: Genset Enable Active and Voltage Monitor Active."}}, {"@type": "Question", "name": "What do I check for SPN 5007?", "acceptedAnswer": {"@type": "Answer", "text": "Check the equipment connected to pins B6 and B7. If the error does not clear after disconnecting the equipment, replace the tachograph."}}, {"@type": "Question", "name": "Is SPN 5008 a fault?", "acceptedAnswer": {"@type": "Answer", "text": "The Renault Trucks wording says the two-year periodic inspection of the TVI tachograph is due. Have it checked at a specialist service centre."}}, {"@type": "Question", "name": "Can I drive with SPN 5004 or 5005?", "acceptedAnswer": {"@type": "Answer", "text": "It is safe to drive to the nearest safe stop. Also keep the engine running, since the electrical system is described as not holding voltage, and checking the battery terminals and earth strap."}}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+/* Раньше это были плашки в строку - хорошо, пока подпись короткая.
+   Теперь в ссылке полное название узла, и на телефоне плашки рвались:
+   «SPN» и номер вставали друг под другом, ширина скакала. Строка во всю
+   ширину с колонкой номера читается сверху вниз и не зависит от длины. */
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+/* Ответ на главный вопрос - сразу под заголовком. Подробный блок риска
+   ниже объясняет, а эта строка отвечает: человек на обочине не должен
+   пролистывать десять заводских таблиц, чтобы узнать, ехать ему или нет. */
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+/* Марка - то, что ищут глазами. Раньше она была набрана как шапка
+   таблицы, мелким серым капсом, и терялась среди служебных подписей. */
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><a href="/kody/">Codes</a><span class="sep">&rsaquo;</span><span>Renault Trucks Tachograph Codes SPN 5000-5008 (incl. 5001, 5004, 5005)</span></div>
+<h1>Renault Trucks Tachograph Codes SPN 5000-5008 (incl. 5001, 5004, 5005)</h1><p class="upd">Updated: 2026-11-13</p><form class="sf" action="/" method="get" role="search"><input type="search" name="q" placeholder="Another code, e.g. 106/3" aria-label="Fault code" autocomplete="off" inputmode="text"><button type="submit">Search</button></form>
+<h2>What these codes are</h2>
+<p>SPN 5000 to 5008 (covering 5000, 5001, 5002, 5003, 5004, 5005, 5006, 5007 and 5008) are read from the tachograph on Renault Trucks. The Renault Trucks wording for every one of them is a tachograph fault: the display and warning indicator, the chart drawer, the speed or activity stylus, the stepper motor, the pulse speed output, or the tachograph's own internal fault. The J1939 table lists these numbers under generator and genset names (Genset Output Voltage Range Status, Genset Soft Start Active and so on). That naming does not match the Renault Trucks wording, so use the table below to match the code on your scanner to the right line.</p>
+
+<h2>SPN, J1939 name and Renault Trucks wording</h2>
+<table>
+<tr><th>SPN</th><th>J1939 name</th><th>FMI</th><th>Renault Trucks wording and repair</th></tr>
+<tr><td>5000</td><td>Generator Overheat Status</td><td>0</td><td>Tachograph, internal fault. Replace the tachograph.</td></tr>
+<tr><td>5001</td><td>Genset Output Voltage Range Status</td><td>0</td><td>VDO tachograph with display, warning indicator fault. Replace the tachograph.</td></tr>
+<tr><td>5002</td><td>Reverse Current Range Setting</td><td>0</td><td>Chart drawer fault. Replace the tachograph.</td></tr>
+<tr><td>5003</td><td>Grapple/Magnet Select Switch</td><td>0</td><td>Vehicle speed stylus fault. Replace the tachograph.</td></tr>
+<tr><td>5004</td><td>Genset Soft Start Active</td><td>0</td><td>Activity stylus fault. Replace the tachograph.</td></tr>
+<tr><td>5005</td><td>Genset Enable Active</td><td>0</td><td>Stepper motor fault. Replace the tachograph.</td></tr>
+<tr><td>5006</td><td>Voltage Monitor Active</td><td>0</td><td>Stepper motor fault. Replace the tachograph.</td></tr>
+<tr><td>5007</td><td>Generator Duty Cycle Exceeded Status</td><td>4</td><td>Fault on the pulse speed output (corrected speed). Check the equipment connected to pins B6 and B7. If the error does not clear after disconnecting the equipment, replace the tachograph.</td></tr>
+<tr><td>5008</td><td>Magnet Forward Current</td><td>0</td><td>TVI tachograph: the two-year periodic inspection is due. Have it checked at a specialist service centre.</td></tr>
+</table>
+
+<h2>What the FMI means</h2>
+<ul>
+<li><strong>FMI 0</strong> (SPN 5000 to 5006 and 5008): data above normal range, the most severe level in the J1939 scale.</li>
+<li><strong>FMI 4</strong> (SPN 5007): voltage below normal or shorted to ground. The Renault Trucks line is a fault on the pulse speed output, and its first check is the equipment connected to it.</li>
+</ul>
+
+<h2>How to approach it</h2>
+<ol>
+<li>Match the SPN to its Renault Trucks line in the table. Most lines have one repair: replace the tachograph.</li>
+<li>For SPN 5007 do the one check the line gives first: look at the equipment connected to pins B6 and B7. Disconnect it and see whether the error clears. If it does not clear, replace the tachograph.</li>
+<li>For SPN 5008 this is not a hardware failure in the wording. The two-year periodic inspection of the TVI tachograph is due, and the repair is a check at a specialist service centre.</li>
+<li>If the scanner threw several codes at once, read the whole list before replacing anything. Corroded battery terminals and loose clamps throw false codes all over the truck.</li>
+</ol>
+
+<h2>Can I keep driving?</h2>
+<p>The verdicts for these tachograph codes differ, so they are split here. Every one of them is marked safe to drive.</p>
+<ul>
+<li><strong>SPN 5000, 5001, 5004, 5005, 5006, 5007: safe to drive to the nearest safe stop.</strong> This is described as an electrical system not holding voltage: while the engine runs the alternator carries it; shut it off and you may not restart. Next the lights go, then modules start dropping out and false codes appear all over the truck. Get somewhere with help without shutting the engine down. Check the battery terminals and earth strap, since corrosion and loose clamps throw false codes. Running voltage should be 27 to 29 V.</li>
+<li><strong>SPN 5002, 5003, 5008: safe to drive until the next service.</strong> This is a standalone fault with no immediate consequences for driving. Show the codes at the next service, and if a second code from the same system appears, stop putting it off.</li>
+</ul>
+<section><h2>FAQ</h2><h3 style="font-size:15px;margin:16px 0 6px">Why does my SPN 5001 say Genset Output Voltage Range Status when it is a tachograph fault?</h3><p>The J1939 table lists SPN 5001 under that genset name, while the Renault Trucks wording is a VDO tachograph with display, warning indicator fault. The same is true of SPN 5004 (activity stylus fault) and SPN 5005 (stepper motor fault).</p><h3 style="font-size:15px;margin:16px 0 6px">What is the difference between SPN 5005 and SPN 5006?</h3><p>Both have the Renault Trucks wording stepper motor fault, with the repair to replace the tachograph. They are listed under different J1939 names: Genset Enable Active and Voltage Monitor Active.</p><h3 style="font-size:15px;margin:16px 0 6px">What do I check for SPN 5007?</h3><p>Check the equipment connected to pins B6 and B7. If the error does not clear after disconnecting the equipment, replace the tachograph.</p><h3 style="font-size:15px;margin:16px 0 6px">Is SPN 5008 a fault?</h3><p>The Renault Trucks wording says the two-year periodic inspection of the TVI tachograph is due. Have it checked at a specialist service centre.</p><h3 style="font-size:15px;margin:16px 0 6px">Can I drive with SPN 5004 or 5005?</h3><p>It is safe to drive to the nearest safe stop. Also keep the engine running, since the electrical system is described as not holding voltage, and checking the battery terminals and earth strap.</p></section>
+<p class="cta">Scanner threw several codes at once? <a href="/">Paste the whole list</a> — we will show which one is the root cause and which ones simply followed.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

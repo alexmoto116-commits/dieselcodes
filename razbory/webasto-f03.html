@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webasto F03 on the timer: on-board voltage</title>
+<meta name="description" content="F03 on a Webasto is an on-board voltage problem, not a flame-out. Thresholds for the Air Top 2000 ST, the advice for the Thermo Top Evo and the driver's order of actions.">
+<link rel="canonical" href="https://dieselcodes.com/razbory/webasto-f03.html">
+<meta name="theme-color" content="#05070A">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dieselcodes.com/razbory/webasto-f03.html">
+<meta property="og:site_name" content="DieselCodes">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Webasto F03: supply voltage too low or too high">
+<meta property="og:description" content="F03 on a Webasto is an on-board voltage problem, not a flame-out. Thresholds for the Air Top 2000 ST, the advice for the Thermo Top Evo and the driver's order of actions.">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Webasto F03: supply voltage too low or too high", "description": "F03 on a Webasto is an on-board voltage problem, not a flame-out. Thresholds for the Air Top 2000 ST, the advice for the Thermo Top Evo and the driver's order of actions.", "inLanguage": "en", "datePublished": "2026-11-09", "dateModified": "2026-11-10", "mainEntityOfPage": "https://dieselcodes.com/razbory/webasto-f03.html", "author": {"@type": "Organization", "name": "DieselCodes editorial team", "url": "https://dieselcodes.com/about.html"}, "publisher": {"@type": "Organization", "name": "DieselCodes", "logo": {"@type": "ImageObject", "url": "https://dieselcodes.com/assets/apple-touch-icon.png"}}, "image": "https://dieselcodes.com/assets/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is F03 on a Webasto a flame-out?", "acceptedAnswer": {"@type": "Answer", "text": "No. Flame-out on the timer shows as F02, while F03 is the on-board voltage."}}, {"@type": "Question", "name": "At what voltage is F03 set on the Air Top 2000 ST?", "acceptedAnswer": {"@type": "Answer", "text": "Below 10.5 V (21 V on a 24 V system) for more than 20 seconds or above 16 V (32 V) for more than 6 seconds."}}, {"@type": "Question", "name": "What should I do first?", "acceptedAnswer": {"@type": "Answer", "text": "Inspect the fuses and connectors, then the battery terminals, charge the battery and switch the heater off and on with a pause of at least 2 seconds."}}, {"@type": "Question", "name": "Why does the code stay with a charged battery?", "acceptedAnswer": {"@type": "Answer", "text": "Then workshop diagnostics are needed: the cause may be the wiring or the power connectors rather than the battery itself."}}]}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://dieselcodes.com/"}, {"@type": "ListItem", "position": 2, "name": "Breakdowns", "item": "https://dieselcodes.com/razbory/"}, {"@type": "ListItem", "position": 3, "name": "Webasto F03: supply voltage too low or too high", "item": "https://dieselcodes.com/razbory/webasto-f03.html"}]}</script>
+<style>
+body{margin:0;background:#05070A;color:#EAF0F7;font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:680px;margin:0 auto;padding:36px 20px 70px}
+a{color:#6FE3D3}
+.tick{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8B9AAC;margin-bottom:16px}
+.tick a{display:inline-flex;align-items:center;min-height:44px}
+.tick a{color:#8B9AAC;text-decoration:none;border-bottom:1px solid rgba(139,154,172,.4)}
+.tick a:first-child{color:#6FE3D3;font-weight:700;font-size:12.5px;border-bottom-color:rgba(111,227,211,.55);border-radius:6px;padding:0 6px;margin-left:-6px}
+@media (prefers-reduced-motion: no-preference){.tick a:first-child{animation:tickGlow 4.5s ease-out 1}}
+@keyframes tickGlow{0%,25%{background:rgba(111,227,211,.32);box-shadow:0 0 16px 2px rgba(111,227,211,.5)}100%{background:rgba(111,227,211,0);box-shadow:0 0 0 rgba(111,227,211,0)}}
+.tick .sep{margin:0 10px;color:#4C5A6B}
+h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:#94A2B4;font-size:14.5px;margin:0 0 28px}
+.mono{font-family:"Cascadia Mono",Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:0 0 28px;font-size:14.5px}
+th{text-align:left;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7A8998;padding:0 10px 8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600}
+td{padding:9px 10px 9px 0;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top}
+td.fmi{font-family:"Cascadia Mono",Consolas,monospace;color:#6FE3D3;white-space:nowrap;width:1%}
+tr.hit td.fmi{color:#FF6B5A}
+h2{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7A8998;margin:0 0 12px;font-weight:600}
+section{margin-bottom:32px}
+.near{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.near li{margin:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.near a{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;
+  text-decoration:none;color:#AFBECD;font-size:14.5px;line-height:1.45}
+.near a:hover{color:#EAF0F7}
+.near a .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.near a .nm{flex:1}
+.risk{border:1px solid rgba(255,255,255,.13);border-radius:14px;padding:14px 16px;background:rgba(255,255,255,.022)}
+.risk .rkb{display:inline-block;font-family:"Cascadia Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;border:1px solid;border-radius:6px;padding:3px 8px;margin-bottom:12px}
+.risk p{margin:0;font-size:15px;line-height:1.6;color:#CBD7E3}
+.risk p+p{margin-top:9px;color:#AFBECD}
+.risk .rkn{margin-top:12px;font-size:13.5px;color:#94A2B4}
+.risk.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.3)}
+.risk.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.28)}
+.risk.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.28)}
+.lead{margin:0 0 18px;font-size:14.5px;color:#94A2B4}
+td.fmi .alt{display:block;font-size:11px;letter-spacing:.02em;color:#7A8998;margin-top:2px}
+.lines{margin:0;padding:0;list-style:none}
+.lines li{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14.5px;color:#94A2B4}
+.lines a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.vline{display:inline-flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;
+  margin:0 0 24px;padding:9px 14px;border:1px solid;border-radius:10px;font-size:15px}
+.vline b{font-weight:650}
+.vline .hz{font-size:13.5px;opacity:.85}
+.vline.t-now{color:#FF6B5A;border-color:rgba(255,107,90,.35);background:rgba(255,107,90,.06)}
+.vline.t-warn{color:#FF9B3D;border-color:rgba(255,155,61,.3);background:rgba(255,155,61,.05)}
+.vline.t-calm{color:#6FE3D3;border-color:rgba(111,227,211,.3);background:rgba(111,227,211,.05)}
+h2.mk{font-family:var(--sans-fallback,inherit);font-size:17.5px;letter-spacing:-.01em;
+  text-transform:none;color:#EAF0F7;font-weight:640;margin:30px 0 10px}
+.jump{margin:0 0 26px;font-size:13.5px;color:#7A8998;display:flex;flex-wrap:wrap;gap:6px 14px}
+.jump a{text-decoration:none;border-bottom:1px solid rgba(111,227,211,.35)}
+.own{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.06)}
+.own li{display:flex;align-items:baseline;gap:12px;padding:10px 2px;border-bottom:1px solid rgba(255,255,255,.06);
+  color:#AFBECD;font-size:14.5px;line-height:1.45;scroll-margin-top:16px}
+.own li .mono{color:#6FE3D3;flex:none;min-width:5.4em}
+.own li:target{background:rgba(111,227,211,.08);color:#EAF0F7}
+.sf{display:flex;gap:8px;margin:0 0 22px}
+.sf input{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:10px;border:1px solid rgba(111,227,211,.35);
+  background:rgba(255,255,255,.04);color:#EAF0F7;font-size:16px;font-family:inherit}
+.sf input::placeholder{color:#7A8998}
+.sf input:focus{outline:none;border-color:#6FE3D3}
+.sf button{min-height:46px;padding:0 18px;border-radius:10px;border:0;background:#6FE3D3;color:#05070A;
+  font-weight:700;font-size:15px;font-family:inherit;cursor:pointer}
+.cta{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#94A2B4}
+</style>
+<style>.na{color:#8B9AAC}.near .na{display:flex;align-items:baseline;gap:12px;min-height:44px;padding:10px 2px;font-size:14.5px;line-height:1.45}.near .na .mono{color:#6FE3D3;flex:none;min-width:5.4em}.near .na .nm{flex:1}.jump .na{margin-right:12px}</style>
+<style>.upd{margin:-2px 0 14px;font-size:13px;color:#7A8998}.how{margin:0 0 18px;font-size:13.5px;color:#94A2B4}.pf-foot{max-width:680px;margin:0 auto;padding:18px 20px 40px;border-top:1px solid rgba(255,255,255,.08);font-size:13.5px;color:#7A8998;text-align:center}.pf-foot a{color:#9FB0C2;display:inline-block;padding:10px 8px;min-height:24px}.pf-foot a:hover{color:#6FE3D3}</style>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:image" content="https://dieselcodes.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dieselcodes.com/assets/og.png">
+</head>
+<body>
+<div class="w">
+<div class="tick"><a href="/">Home</a><span class="sep">&rsaquo;</span><a href="/razbory/">Breakdowns</a><span class="sep">&rsaquo;</span><span>Webasto F03: supply voltage too low or too high</span></div>
+<style>.art p,.art li{color:#CBD7E3;font-size:15.5px;line-height:1.65}.art ul,.art ol{margin:0 0 14px;padding-left:22px}.art p{margin:0 0 12px;max-width:68ch}.art table{margin:0 0 18px}.art td,.art th{overflow-wrap:anywhere}.art td:first-child{font-weight:600;color:#EAF0F7}.art h3.faq-q{font-size:1em;font-weight:700;margin:14px 0 4px}.art .short{border:1px solid rgba(111,227,211,.3);border-radius:12px;background:rgba(111,227,211,.05);padding:12px 16px;margin:0 0 26px}.art .short p{margin:0}.art .gt{margin:26px 0 10px;font-size:17px}.razb ul{margin:0}</style><div class="art"><h1>Webasto F03: supply voltage too low or too high</h1><p class="upd">Updated: 2026-11-10</p><form class="sf" action="/" method="get" role="search"><input type="search" name="q" placeholder="Your code, e.g. 1078/3" aria-label="Fault code" autocomplete="off" inputmode="text"><button type="submit">Search</button></form><div class="short"><p><b>In short.</b> F03 speaks only of the on-board voltage: low or high, the timer does not say which. Flame-out on the timer is F02. Start with the battery, the terminals and the fuse.</p></div><section><h2>What F03 means</h2><p>The code does not distinguish &quot;too little&quot; from &quot;too much&quot;: both are in one entry, and the difference can be found by workshop diagnostics. For the Air Top 2000 ST the factory thresholds are:</p><table><tr><th>What</th><th>12 V system</th><th>24 V system</th><th>For how long</th></tr><tr><td>Low voltage</td><td>below 10.5 V</td><td>below 21 V</td><td>more than 20 s</td></tr><tr><td>High voltage</td><td>above 16 V</td><td>above 32 V</td><td>more than 6 s</td></tr></table><p>For other models look in the manual for your model. The factory advice in both cases is the same: charge the battery.</p></section><section><h2>Thermo Top Evo</h2><p>On the Thermo Top Evo F03 is also about the on-board voltage, too low or raised. The manual advises charging the vehicle battery and then switching the heater off and on again.</p></section><section><h2>Can you drive</h2><p>A heater is not an engine, and F03 by itself does not forbid driving. But the code points to a power problem, and a discharged battery may fail to start the vehicle in the morning. Charge or check it before the next overnight stop.</p></section><section><h2>Order of actions</h2><ol><li>Inspect the heater fuses and connectors, where the factory instruction starts. Look for corrosion, loose contacts, poor crimps, corroded wires and fuses.</li><li>Inspect the battery terminals: corrosion, loose nuts.</li><li>Charge the battery.</li><li>Switch the heater off for at least 2 seconds and on again.</li></ol></section><section><h2>When to see a workshop</h2><ul><li>F03 did not go away after charging the battery and checking contacts: the instruction advises a check at a Webasto-trained service;</li><li>F03 keeps coming back with a charged battery.</li></ul></section><section><h2>Questions and answers</h2><h3 class="faq-q">Is F03 on a Webasto a flame-out?</h3><p>No. Flame-out on the timer shows as F02, while F03 is the on-board voltage.</p><h3 class="faq-q">At what voltage is F03 set on the Air Top 2000 ST?</h3><p>Below 10.5 V (21 V on a 24 V system) for more than 20 seconds or above 16 V (32 V) for more than 6 seconds.</p><h3 class="faq-q">What should I do first?</h3><p>Inspect the fuses and connectors, then the battery terminals, charge the battery and switch the heater off and on with a pause of at least 2 seconds.</p><h3 class="faq-q">Why does the code stay with a charged battery?</h3><p>Then workshop diagnostics are needed: the cause may be the wiring or the power connectors rather than the battery itself.</p></section><section><h2>Code pages on the site</h2><ul class="lines"><li><span class="na">Webasto F03 - code page</span></li><li><span class="na">F02 - flame-out</span></li><li><span class="na">F01 - no start</span></li><li><span class="na">All Webasto codes</span></li></ul></section><p class="sub">Checked against manufacturer manuals and tables; the same facts as in our videos and articles. The decision to drive remains with the driver.</p><p><a href="/razbory/">&larr; All breakdowns</a></p></div><p class="cta">Cannot find your code? <a href="/">Type it into the search</a> — or paste the whole list from the scanner and we will show which fault is the real one.</p></div>
+<footer class="pf-foot"><a href="/about.html">About</a> &middot; <a href="/how-we-rate.html">How we rate</a></footer>
+</body>
+</html>

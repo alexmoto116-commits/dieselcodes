@@ -1,0 +1,37 @@
+name: SEO and safety audit
+
+on:
+  push:
+    branches:
+      - main
+      - audit/safety-copy-2026-11-26
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check diagnostic copy
+        run: python3 scripts/check_diagnostic_copy.py
+      - name: Test shared search URL restoration
+        run: node scripts/test_shared_search_url.cjs
+      - name: Test navigation link resolver
+        run: python3 -m unittest discover -s scripts -p 'test_navigation_audit.py'
+      - name: Generate SEO audit report (non-blocking findings)
+        if: always()
+        run: python3 scripts/audit_static_seo.py --json seo-audit-results.json
+      - name: Upload audit findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-dieselcodes
+          path: seo-audit-results.json
+          if-no-files-found: warn

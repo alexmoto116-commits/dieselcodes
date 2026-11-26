@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check diagnostic copy
         run: python3 scripts/check_diagnostic_copy.py
+      - name: Test navigation link resolver
+        run: python3 -m unittest discover -s scripts -p 'test_navigation_audit.py'
       - name: Generate SEO audit report (non-blocking findings)
         if: always()
         run: python3 scripts/audit_static_seo.py --json seo-audit-results.json

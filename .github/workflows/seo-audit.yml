@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check diagnostic copy
         run: python3 scripts/check_diagnostic_copy.py
+      - name: Test shared search URL restoration
+        run: node scripts/test_shared_search_url.cjs
       - name: Test navigation link resolver
         run: python3 -m unittest discover -s scripts -p 'test_navigation_audit.py'
       - name: Generate SEO audit report (non-blocking findings)

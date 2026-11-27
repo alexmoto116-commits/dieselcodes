@@ -1,0 +1,602 @@
+[
+  {
+    "spn": 84,
+    "name": "Wheel-Based Vehicle Speed",
+    "topic": "Wheel-Based Vehicle Speed: Missing or Erratic Signal",
+    "description": "Diagnose Detroit SPN 84 FMI 13, 19 and 21 by checking whether the vehicle speed message is missing, erratic or inconsistent.",
+    "reason": "Adds a missing vehicle-speed signal page for network and ABS-adjacent fault triage.",
+    "meaning": "This parameter represents wheel-based vehicle speed. In Detroit’s EPA10 and GHG14 procedures, the engine controller is looking at a vehicle-speed message on J1939. The fault can be logged by a controller that receives the message rather than the module that produces it.",
+    "symptoms": "A warning lamp or inconsistent speed data in the diagnostic tool can accompany the fault. Compare displayed speed with the sending module’s live data using approved test conditions. The diagnostic applies to the signal source configured on that vehicle.",
+    "fmis": [
+      [
+        "13",
+        "Detroit EPA10/GHG14",
+        "A configured wheel-based vehicle speed signal is missing."
+      ],
+      [
+        "19",
+        "Detroit EPA10/GHG14",
+        "A received wheel-based vehicle speed signal is erratic."
+      ],
+      [
+        "21",
+        "Detroit EPA10/GHG14",
+        "The configured wheel-based vehicle speed signals fail the manufacturer’s comparison check."
+      ]
+    ],
+    "causes": [
+      "Loss of communication with a configured source module",
+      "Unstable module power or a CAN communication fault",
+      "Source configuration that does not match the installed modules"
+    ],
+    "steps": [
+      "Record the reporting controller, FMI and any companion faults before clearing.",
+      "For FMI 13 or 19, follow the bulletin’s order for companion battery-voltage and CAN faults before chasing a speed sensor.",
+      "Use the chassis wiring and module map to identify the configured source. For FMI 21, compare the configured speed inputs using the OEM procedure.",
+      "Recheck the correct source and confirm stable vehicle-speed data after repair."
+    ],
+    "action": "Treat any ABS or brake warning separately under the vehicle manufacturer’s instructions. A wheel-speed message fault alone does not establish brake condition or permission to continue driving.",
+    "related": [
+      [
+        168,
+        "Battery voltage"
+      ],
+      [
+        625,
+        "Proprietary data link"
+      ],
+      [
+        639,
+        "J1939 Network #1"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit bulletin 1 02-13, SPN 84 FMI 13, 19 and 21",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10140890-9999.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 625,
+    "name": "Proprietary Data Link",
+    "topic": "Proprietary Data Link: CAN Message Errors",
+    "description": "Trace SPN 625 from the reporting module to its missing or inconsistent CAN message. Includes Detroit CPC and Bendix Fusion examples.",
+    "reason": "Separates proprietary module-to-module CAN faults from primary J1939 faults.",
+    "meaning": "SPN 625 covers a proprietary data-link problem. The module logging the code and its FMI tell you which conversation failed. On a Detroit GHG17 installation covered by bulletin 17 TS-12Rev, CPC FMI 9 can mean an aftertreatment control module (ACM) diagnostic message stopped arriving.",
+    "symptoms": "A scan tool may show an unavailable module or several communication-related faults together. On the covered Detroit platform, MCM SPN 1231 FMI 9 can occur alongside the CPC fault.",
+    "fmis": [
+      [
+        "9",
+        "Detroit CPC, GHG17 example",
+        "An ACM diagnostic message on the powertrain CAN is missing."
+      ],
+      [
+        "2, 9, 10, 19",
+        "Bendix Fusion",
+        "Inconsistent message, message timeout, counter increment error and message counter error, respectively."
+      ],
+      [
+        "13",
+        "Bendix Fusion",
+        "Brake controller and radar sensor configuration do not match."
+      ]
+    ],
+    "causes": [
+      "Harness chafing or moisture at the Detroit 1-Box aftertreatment harness on affected builds",
+      "Poor power or ground at a module that goes offline",
+      "Incorrect brake controller or radar configuration on a Bendix installation"
+    ],
+    "steps": [
+      "Save all codes with the module names and identify the missing message in the OEM tool.",
+      "If several receivers lost the same module, verify its power and ground and inspect its branch. Use the Detroit harness bulletin on the stated platform.",
+      "For Bendix FMI 13, follow the Fusion configuration troubleshooting path instead of applying the Detroit electrical procedure.",
+      "Verify that the source is online and the expected message is received after repair."
+    ],
+    "action": "A timeout identifies a missing message, so isolate the source, its supply and the network before ordering a controller. If a braking or collision-mitigation warning is active, follow the chassis instructions.",
+    "related": [
+      [
+        639,
+        "Primary J1939 communication"
+      ],
+      [
+        627,
+        "Module power source"
+      ],
+      [
+        629,
+        "Controller #1"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit 17 TS-12Rev, GHG17 1-Box harness",
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10169699-0001.pdf"
+      ],
+      [
+        "Bendix Fusion manual, Table M",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10235737-0001.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 639,
+    "name": "J1939 Network #1",
+    "topic": "J1939 Network #1: Missing Vehicle Messages",
+    "description": "Interpret SPN 639 FMI 9 or 19 in the Bendix Fusion radar example and isolate a missing module or vehicle network segment.",
+    "reason": "Adds a primary-network fault page distinct from the proprietary SPN 625 examples.",
+    "meaning": "SPN 639 identifies a fault involving the primary vehicle J1939 network. A receiving module can report a fault when expected periodic messages disappear. The example below is the Bendix Fusion radar’s interpretation, so record which ECU logged the SPN before applying it.",
+    "symptoms": "A radar or driver-assistance warning can accompany missing vehicle data. The diagnostic tool may show intermittent availability of particular modules or a cluster of communication faults.",
+    "fmis": [
+      [
+        "9",
+        "Bendix Fusion radar",
+        "The radar detects intermittent loss of messages from vehicle components."
+      ],
+      [
+        "19",
+        "Bendix Fusion radar",
+        "The radar detects no J1939 messages from vehicle components."
+      ]
+    ],
+    "causes": [
+      "One sending module losing power, ground or network connection",
+      "A vehicle network branch or connector fault",
+      "Loss of the radar’s connection to the vehicle network"
+    ],
+    "steps": [
+      "Record when the fault becomes active. Bendix notes that its newly active J1939 diagnostics require the engine to have been running, so use the manual’s detection conditions.",
+      "Map the reporting radar and the missing message sources in the OEM scan tool. A missing source across several receivers points to a different test path than a radar-only complaint.",
+      "Check source power, ground and applicable network wiring using the chassis procedure. Confirm message traffic before replacing a module.",
+      "After repair, use the manufacturer’s verification sequence and check for other active faults."
+    ],
+    "action": "Do not infer that collision mitigation, ABS or other driver-assistance functions are available from this code alone. Follow the vehicle’s warning instructions and obtain service if the system reports reduced capability.",
+    "related": [
+      [
+        625,
+        "Proprietary CAN messages"
+      ],
+      [
+        84,
+        "Wheel-based speed message"
+      ],
+      [
+        168,
+        "Power supply voltage"
+      ]
+    ],
+    "sources": [
+      [
+        "Bendix Fusion manual, Table M",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10235737-0001.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 651,
+    "name": "Engine Injector Cylinder #1",
+    "topic": "Cylinder 1 Injector: Circuit and Control Faults",
+    "description": "Distinguish Cummins SPN 651 FMI 5 from Detroit circuit and needle-control cases before replacing the cylinder 1 injector.",
+    "reason": "Adds a cylinder-specific electrical diagnosis linked to fuel supply and other injector codes.",
+    "meaning": "SPN 651 identifies the cylinder 1 injector parameter. A fault can be recorded because the control circuit is abnormal or because the controller detects a platform-specific control problem. FMI and engine family are critical to selecting the right test.",
+    "symptoms": "Possible symptoms include uneven running, reduced power or an engine warning. Check whether other cylinder codes or power supply codes appeared at the same time. A fault on several cylinders points to a different investigation from an isolated cylinder 1 event.",
+    "fmis": [
+      [
+        "5",
+        "Cummins B6.7 CM2350/CM2450, Navistar bulletin",
+        "Injector circuit current below normal or open, Cummins Fault Code 322."
+      ],
+      [
+        "3, 4",
+        "Detroit EPA10, remanufactured MCM bulletin context",
+        "High- and low-circuit faults. Check bulletin and controller applicability before applying its remedy."
+      ],
+      [
+        "14",
+        "Detroit Series 60 EPA07",
+        "The needle control valve operating fault uses a different diagnostic sequence from an FMI 5 open circuit."
+      ]
+    ],
+    "causes": [
+      "Loose, damaged or corroded injector harness terminals",
+      "An open or short on the covered electrical circuit",
+      "Injector control component, power supply or controller fault on the applicable test path"
+    ],
+    "steps": [
+      "Confirm the engine family and identify cylinder 1 using the OEM cylinder numbering.",
+      "Review companion voltage and cylinder codes. On the Detroit Series 60 path, follow the bulletin’s priority for supply-voltage faults.",
+      "With the system made safe as specified, use the OEM isolation tests to distinguish injector, harness and controller. Avoid opening high-pressure fuel connections for this electrical check.",
+      "Verify the repair under the manufacturer’s test conditions and confirm the full fault record."
+    ],
+    "action": "Use a qualified shop for injector circuit tests that require engine or valve-cover access. Seek service if a severe misfire, derate or stop warning occurs.",
+    "related": [
+      [
+        653,
+        "Cylinder 3 injector"
+      ],
+      [
+        157,
+        "Fuel rail pressure"
+      ],
+      [
+        168,
+        "Control module voltage"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit Series 60 EPA07 injector diagnostic",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10142031-9999.pdf"
+      ],
+      [
+        "Detroit EPA10 remanufactured MCM bulletin",
+        "https://static.nhtsa.gov/odi/tsbs/2015/MC-10130409-9999.pdf"
+      ],
+      [
+        "Navistar/Cummins B6.7 SPN 651 FMI 5",
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10174782-0001.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 723,
+    "name": "Engine Speed Sensor #2",
+    "topic": "Engine Speed Sensor #2: Cam Signal or Network Input",
+    "description": "Distinguish Detroit SPN 723 FMI 8 cam sensor timeout from an Eaton secondary-engine-speed message configuration fault.",
+    "reason": "Covers engine timing and a documented transmission-side interpretation of the same SPN.",
+    "meaning": "The secondary engine speed signal may be used for camshaft timing or delivered to a transmission over a data link. Detroit’s engine-side FMI 8 is a camshaft position sensor timeout. Eaton’s receiving transmission can report a different failure for the same SPN.",
+    "symptoms": "Detroit’s bulletin lists engine and emissions warning lamps with a possible derate for the FMI 8 case. Slow cranking is a diagnostic lead to check separately. A transmission-side complaint should be assessed with the transmission’s own fault record.",
+    "fmis": [
+      [
+        "8",
+        "Detroit engine, bulletin 10 04-13",
+        "The camshaft position sensor signal timed out."
+      ],
+      [
+        "13",
+        "Eaton secondary engine-speed fault 172",
+        "The required secondary engine-speed message is not enabled for the receiving system."
+      ]
+    ],
+    "causes": [
+      "Low cranking speed on the Detroit diagnostic path",
+      "Damage, moisture or poor terminal contact at the camshaft sensor connector or its harness",
+      "Engine-speed message configuration on the specified Eaton fault path"
+    ],
+    "steps": [
+      "Read the reporting controller. A Detroit engine code and an Eaton transmission code require different tests.",
+      "On Detroit, verify cranking speed before interpreting sensor tests. Inspect the cam sensor connector for moisture, damaged terminals or harness damage.",
+      "Run the engine serial number-specific wiring and signal checks. For Eaton FMI 13, use the OEM configuration procedure to verify the required message is enabled.",
+      "Confirm the signal is present under the specified verification conditions before replacing another component."
+    ],
+    "action": "Address active derate, stalling or inability to start through the manufacturer’s service procedure. Save the engine and transmission fault reports if both controllers are involved.",
+    "related": [
+      [
+        190,
+        "Primary engine speed"
+      ],
+      [
+        639,
+        "Primary J1939 network"
+      ],
+      [
+        651,
+        "Cylinder 1 injector"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit bulletin 10 04-13, camshaft position sensor timeout",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10192003-9999.pdf"
+      ],
+      [
+        "Eaton TRTS0950, secondary engine speed fault 172",
+        "https://productinfo.serviceranger4.com/books/TRTS0950/lang/en-us/section/TS0950FC172"
+      ]
+    ]
+  },
+  {
+    "spn": 3216,
+    "name": "Aftertreatment 1 Intake NOx",
+    "topic": "Inlet NOx Sensor: Low Signal or Data Unavailable",
+    "description": "Troubleshoot Detroit SPN 3216 by separating an inlet NOx circuit fault, unavailable data, and a documented DD16 calibration case.",
+    "reason": "Adds inlet sensor coverage alongside the existing outlet NOx reference.",
+    "meaning": "SPN 3216 applies to the inlet nitrogen oxides (NOx) signal for Aftertreatment 1. This signal is upstream of the SCR system. The reporting controller and FMI distinguish an electrical problem from a missing measurement or a platform-specific plausibility concern.",
+    "symptoms": "A check engine or emissions warning may accompany the code. The inlet NOx value can be unavailable in live data. Compare the inlet and outlet channels only once the OEM procedure says both measurements are valid.",
+    "fmis": [
+      [
+        "4",
+        "Detroit EPA10",
+        "Inlet NOx sensor circuit reports voltage below the applicable range."
+      ],
+      [
+        "13",
+        "Detroit EPA10/GHG14",
+        "Inlet NOx data is unavailable in the documented Detroit procedure."
+      ],
+      [
+        "20",
+        "Detroit DD16 with GATS 2.0, documented paired-code case",
+        "Check bulletin applicability when 2659 FMI 0 accompanies 3216 FMI 20. The bulletin identifies a specific calibration issue."
+      ]
+    ],
+    "causes": [
+      "Inlet sensor harness or connector damage on an electrical fault path",
+      "Sensor supply or module communication problems that prevent a valid sensor report",
+      "Calibration issue on the specific DD16 and software combination described in the bulletin"
+    ],
+    "steps": [
+      "Identify the inlet sensor and recording controller on the vehicle’s wiring diagram.",
+      "For FMI 4, inspect the connector and harness and follow the EPA10 electrical tests. For FMI 13, follow the data availability sequence and retain companion faults.",
+      "If the DD16 pairing matches the bulletin, verify software applicability before ordering a sensor.",
+      "Run the OEM verification routine after repair and confirm that the inlet channel reports valid data."
+    ],
+    "action": "If inducement or a stop warning appears, follow the vehicle manufacturer’s instructions. A failed inlet measurement alone does not diagnose SCR catalyst failure.",
+    "related": [
+      [
+        3226,
+        "Outlet NOx signal"
+      ],
+      [
+        4364,
+        "SCR conversion efficiency"
+      ],
+      [
+        3364,
+        "DEF quality"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit EPA10 inlet NOx circuit test",
+        "https://static.nhtsa.gov/odi/tsbs/2014/MC-10126758-9999.pdf"
+      ],
+      [
+        "Detroit EPA10/GHG14, FMI 13",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10192004-9999.pdf"
+      ],
+      [
+        "Detroit DD16/GATS 2.0 bulletin",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10241588-0001.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 3242,
+    "name": "Aftertreatment 1 Diesel Particulate Filter Intake Gas Temperature",
+    "topic": "DPF Intake Temperature: Detroit DOC Sensor Correlation",
+    "description": "Diagnose Detroit GHG17 SPN 3242 FMI 20 by comparing aftertreatment temperature channels and checking companion circuit faults.",
+    "reason": "Fills the temperature-correlation gap between the DPF pressure and regeneration pages.",
+    "meaning": "SPN 3242 names an aftertreatment intake temperature channel. In the cited Detroit GHG17 heavy-duty procedure, the correlation monitor uses diesel oxidation catalyst (DOC) temperatures. Use the vehicle’s layout to identify the named sensor before disconnecting anything.",
+    "symptoms": "The cited Detroit case can light the MIL and check engine lamp and inhibit regeneration. The temperature values may look plausible individually, so save a trace that shows what each sensor reads under the same conditions.",
+    "fmis": [
+      [
+        "20",
+        "Detroit GHG17 heavy-duty",
+        "The correlation monitor detects a high-reading DOC inlet channel or a low-reading DOC outlet channel."
+      ]
+    ],
+    "causes": [
+      "A temperature sensor drifting without a complete circuit failure",
+      "A companion temperature circuit fault or connector problem",
+      "Misidentification of the inlet and outlet channels during diagnosis"
+    ],
+    "steps": [
+      "Identify the exhaust layout and label the DOC inlet, DOC outlet and DPF outlet readings in the diagnostic log.",
+      "Address companion temperature circuit faults listed in the Detroit bulletin first.",
+      "Compare those sensor channels under the stated service-test conditions and follow the OEM branch for the reading that disagrees.",
+      "Confirm consistent readings and check regeneration status using the applicable verification sequence."
+    ],
+    "action": "Allow the exhaust system to cool before physical inspection. Use the service procedure for any heated diagnostic routine. A correlation fault is insufficient evidence to diagnose soot loading.",
+    "related": [
+      [
+        3251,
+        "DPF differential pressure"
+      ],
+      [
+        3556,
+        "Regeneration temperature"
+      ],
+      [
+        3719,
+        "DPF soot load"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit GHG17 temperature-correlation bulletin",
+        "https://static.nhtsa.gov/odi/tsbs/2017/MC-10142100-9999.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 3251,
+    "name": "Aftertreatment 1 Diesel Particulate Filter Differential Pressure",
+    "topic": "DPF Differential Pressure: Sensor Fault or Restriction?",
+    "description": "Interpret Detroit SPN 3251 FMI 0, 2 and 16. Check pressure sensing and distinguish DOC restriction from DPF loading.",
+    "reason": "Adds pressure diagnosis distinct from existing soot-load and derate pages.",
+    "meaning": "SPN 3251 concerns pressure across the aftertreatment filter system. In the cited Detroit implementation, the diagnostic procedure also uses the DOC inlet and DPF outlet pressure channels to locate where restriction may be developing.",
+    "symptoms": "A warning or derate may accompany a high restriction report. Compare pressure with the operating conditions and other aftertreatment faults. A single value without the applicable engine or service-test conditions is insufficient.",
+    "fmis": [
+      [
+        "0",
+        "Detroit EPA10/GHG14",
+        "High pressure concern on the OEM diagnostic path."
+      ],
+      [
+        "16",
+        "Detroit EPA10/GHG14",
+        "Elevated pressure reported under a different severity classification from FMI 0."
+      ],
+      [
+        "2",
+        "Detroit EPA10",
+        "DOC inlet pressure is implausible in the cited diagnostic."
+      ]
+    ],
+    "causes": [
+      "Pressure sensor, sensing-line or pressure port problem",
+      "Restriction toward the DOC inlet or face",
+      "DPF loading or another exhaust restriction on the applicable layout"
+    ],
+    "steps": [
+      "Record the full aftertreatment fault set and the conditions when pressure rose.",
+      "Inspect the relevant sensing connections and follow the manual’s pressure-sensor plausibility checks before deciding the filter is restricted.",
+      "Use the Detroit pressure log and prescribed service test to distinguish the DOC side from DPF loading. The shape and persistence of the reading matter more than an isolated number.",
+      "Verify the pressure readings after repairs using the applicable test conditions."
+    ],
+    "action": "A code alone is insufficient to select a forced regeneration. Follow the location, temperature and eligibility requirements of the vehicle manufacturer before any service regeneration.",
+    "related": [
+      [
+        3719,
+        "DPF soot load"
+      ],
+      [
+        3242,
+        "Aftertreatment inlet temperature"
+      ],
+      [
+        3556,
+        "Regeneration temperature"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit EPA10/GHG14, SPN 3251 FMI 0 and 16",
+        "https://static.nhtsa.gov/odi/tsbs/2015/MC-10142318-9999.pdf"
+      ],
+      [
+        "Detroit EPA10, SPN 3251 FMI 2",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10142356-9999.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 3364,
+    "name": "Aftertreatment 1 Diesel Exhaust Fluid Tank Quality",
+    "topic": "DEF Quality: Sample Test and SCR Diagnostics",
+    "description": "Interpret Detroit EPA10/GHG14 SPN 3364 and distinguish DEF concentration from dosing, software and level-related faults.",
+    "reason": "Creates a DEF-quality destination alongside existing SCR efficiency and inducement pages.",
+    "meaning": "SPN 3364 concerns the quality of diesel exhaust fluid (DEF) in Aftertreatment 1. The exact diagnostic depends on the emissions platform. A warning can involve the quality assessment, the fluid itself or other parts of the OEM’s dosing and sensor diagnostic path.",
+    "symptoms": "A DEF quality warning, a check engine lamp or a derate may occur depending on the implementation. Save any SCR efficiency, tank-level or inducement faults as context before clearing the report.",
+    "fmis": [
+      [
+        "2",
+        "Detroit EPA10 ACM",
+        "Improper DEF quality. The bulletin includes a software check and a concentration test."
+      ],
+      [
+        "18",
+        "Detroit GHG14",
+        "Improper DEF quality warning. The procedure checks fluid and then the dosing system where applicable."
+      ],
+      [
+        "10, 11, 15, 18",
+        "Cummins on selected International/IC installations",
+        "Included in a service bulletin for quality codes that can occur with a low tank level and air bubbles in the sensor measurement. Use the specific fault-code procedure."
+      ]
+    ],
+    "causes": [
+      "Incorrect concentration or contamination introduced during storage or filling",
+      "A DEF line restriction, leak or dosing issue on the applicable OEM test path",
+      "A model-specific software or quality-sensor measurement issue"
+    ],
+    "steps": [
+      "Identify the emissions family and the controller. Record the full fault set and the circumstances of the last refill.",
+      "Use an appropriate DEF refractometer and the manufacturer’s sampling procedure. Interpret the reading against the limits for the vehicle.",
+      "If the fluid passes, use the OEM path for software, damaged lines and dosing checks. Keep any dosing quantity test within a supervised service procedure.",
+      "Verify repair according to the applicable bulletin and check the SCR faults separately."
+    ],
+    "action": "Do not top off contaminated fluid as a remedy or assume adding DEF will remove an inducement. Escalate an active derate through the vehicle’s service guidance.",
+    "related": [
+      [
+        4364,
+        "SCR conversion efficiency"
+      ],
+      [
+        5246,
+        "SCR operator inducement"
+      ],
+      [
+        3216,
+        "Inlet NOx signal"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit bulletin 10 12-15, SPN 3364 FMI 2",
+        "https://static.nhtsa.gov/odi/tsbs/2015/SB-10074746-7690.pdf"
+      ],
+      [
+        "Detroit bulletin 1 08-13, SPN 3364 FMI 18",
+        "https://static.nhtsa.gov/odi/tsbs/2013/MC-10140881-9999.pdf"
+      ],
+      [
+        "Cummins TSB160031, DEF quality on selected International and IC vehicles",
+        "https://static.nhtsa.gov/odi/tsbs/2017/MC-10123203-9999.pdf"
+      ]
+    ]
+  },
+  {
+    "spn": 3556,
+    "name": "Aftertreatment 1 Hydrocarbon Doser",
+    "topic": "Hydrocarbon Doser: Regeneration Temperature Fault",
+    "description": "Interpret Detroit SPN 3556 FMI 0, 1 and 18 using regeneration mode, DOC outlet temperatures, companion codes and the correct service test.",
+    "reason": "Adds a regeneration heat-production fault distinct from temperature-sensor and restriction pages.",
+    "meaning": "SPN 3556 is associated with the aftertreatment hydrocarbon doser. In the stated Detroit procedures the controller judges temperature at the diesel oxidation catalyst (DOC) outlet during regeneration. The kind of regeneration and FMI determine the test path.",
+    "symptoms": "Regeneration may be interrupted or fail to achieve its expected temperature. Detroit’s GHG14 FMI 0 bulletin describes an engine warning and derate for its covered configuration.",
+    "fmis": [
+      [
+        "0",
+        "Detroit GHG14",
+        "DOC outlet temperature is higher than the model expects."
+      ],
+      [
+        "1",
+        "Detroit EPA10/GHG14",
+        "The expected heat rise is insufficient during the applicable regeneration mode."
+      ],
+      [
+        "18",
+        "Detroit EPA10/GHG14 service bulletin",
+        "DOC outlet temperature is low in the low-temperature regeneration diagnostic."
+      ]
+    ],
+    "causes": [
+      "An exhaust temperature sensor signal that is unreliable",
+      "An exhaust leak affecting temperature response",
+      "A hydrocarbon dosing or fuel-pressure issue on the relevant service path"
+    ],
+    "steps": [
+      "Record the regeneration mode, temperature trace and companion codes before clearing faults.",
+      "Resolve the listed temperature-sensor or doser-pressure faults first. Inspect the cooled system for soot marks or other signs of an exhaust leak.",
+      "Compare the DOC outlet trace with the manufacturer’s model and proceed through the approved dosing and exhaust tests for that FMI.",
+      "Verify that the corrected system reaches and controls the expected temperature in the specified service routine."
+    ],
+    "action": "Do not repeatedly command a regeneration to clear the code. Follow the vehicle’s conditions for a safe service test and its response to active warnings.",
+    "related": [
+      [
+        3242,
+        "Temperature sensor correlation"
+      ],
+      [
+        3251,
+        "DPF pressure"
+      ],
+      [
+        3719,
+        "DPF soot load"
+      ]
+    ],
+    "sources": [
+      [
+        "Detroit 5 18-14, regeneration temperature diagnostics",
+        "https://static.nhtsa.gov/odi/tsbs/2014/MC-10141905-9999.pdf"
+      ],
+      [
+        "Detroit 04 12-17, GHG14 upper-limit diagnostic",
+        "https://static.nhtsa.gov/odi/tsbs/2017/MC-10140665-9999.pdf"
+      ]
+    ]
+  }
+]

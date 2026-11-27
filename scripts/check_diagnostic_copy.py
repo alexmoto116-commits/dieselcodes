@@ -8,6 +8,7 @@ Copy-level checks only; vehicle-specific manufacturer guidance still requires re
 """
 from pathlib import Path
 import sys
+from spn_safety_overrides import PAGES, apply_overrides
 
 ROOT = Path(__file__).resolve().parents[1]
 NO_START = ROOT / "problemy" / "ne-zavoditsya.html"
@@ -31,10 +32,15 @@ def main() -> int:
         errors.append("SPN 91 page again unconditionally declares safe-to-drive")
     if "Driving safety cannot be determined from SPN 91 alone." not in pedal:
         errors.append("SPN 91 FAQ safety disclaimer is missing")
+    for spn in PAGES:
+        relative = f"kody/spn-{spn}.html"
+        page = (ROOT / relative).read_text(encoding="utf-8")
+        if apply_overrides(relative, page) != page:
+            errors.append(f"SPN {spn} OEM safety correction is missing")
     if errors:
         print("\n".join("FAIL: " + error for error in errors))
         return 1
-    print("PASS: no-start and SPN 91 safety-copy regression checks")
+    print("PASS: no-start and five SPN safety-copy regression checks")
     return 0
 
 
